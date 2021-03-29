@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default function Task () {
-    return(
+export default function NewTask () {
+    return (
         <div>
-            Task
+            
         </div>
     )
 }

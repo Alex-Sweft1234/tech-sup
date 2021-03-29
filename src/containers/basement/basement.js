@@ -7,6 +7,7 @@ import AddToPhotosIcon from '@material-ui/icons/AddToPhotos';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 import MailIcon from '@material-ui/icons/Mail';
+import GroupIcon from '@material-ui/icons/Group';
 
 const cls = makeStyles((theme) => ({
     footCls: {
@@ -43,12 +44,12 @@ export default function Footer() {
     return(
         <div className={clsSt.footCls} style={{paddingBottom: 30}}>
             <Grid container spacing={0} style={{paddingLeft: 15, paddingTop: 30}}>
-                <Grid item xs={12} sm={2}>
+                <Grid item xs={12} md={2}>
                     {/*<p>
                         &ensp;2021 &copy; by TechSupport
                     </p>*/}
                 </Grid>
-                <Grid style={{paddingLeft: 90}} item xs={12} sm={3}>
+                <Grid style={{paddingLeft: 90}} item xs={12} md={3}>
                     <p style={{fontSize: 18}}>
                         Контакты
                     </p>
@@ -65,7 +66,7 @@ export default function Footer() {
                         </a>
                     </p>
                 </Grid>
-                <Grid style={{paddingLeft: 90}} item xs={12} sm={3}>
+                <Grid style={{paddingLeft: 90}} item xs={12} md={3}>
                     <p style={{fontSize: 18}}>
                         Задачи
                     </p>
@@ -88,7 +89,7 @@ export default function Footer() {
                         </a>
                     </p>
                 </Grid>
-                <Grid style={{paddingLeft: 90}} item xs={12} sm={3}>
+                <Grid style={{paddingLeft: 90}} item xs={12} md={3}>
                     <p style={{fontSize: 18}}>
                         О нас
                     </p>
@@ -102,6 +103,12 @@ export default function Footer() {
                         <a href="#" className={clsSt.aHref}>
                             <ExploreIcon style={{fontSize: 20}}/>&nbsp;
                             <span className={clsSt.labelInfo}>Как нас найти</span>
+                        </a>
+                    </p>
+                    <p>
+                        <a href="#" className={clsSt.aHref}>
+                            <GroupIcon style={{fontSize: 20}}/>&nbsp;
+                            <span className={clsSt.labelInfo}>Наши партнёры</span>
                         </a>
                     </p>
                 </Grid>

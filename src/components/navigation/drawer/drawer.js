@@ -131,7 +131,7 @@ export default function MiniDrawer() {
                                 TechSupport
                             </Typography>
                         </Grid>
-                        <Grid style={{fontSize: 18, color: 'Salmon'}} item xs={12} sm={2}>
+                        {/*<Grid style={{fontSize: 18, color: 'Salmon'}} item xs={12} sm={2}>
                             <span>
                                 techsup@support.com
                             </span>
@@ -140,7 +140,7 @@ export default function MiniDrawer() {
                             <span>
                                 8(8636)30-04-11
                             </span>
-                        </Grid>
+                    </Grid>*/}
                     </Grid>
                 </Toolbar>
             </AppBar>
