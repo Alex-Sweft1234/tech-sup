@@ -6,7 +6,7 @@ export default function Layout(props) {
     return (
         <Fragment>
             <Drawer />  
-            <div className="layout" style={{backgroundColor: "Lavender", minHeight: '78vh'}}>
+            <div className="layout" style={{backgroundColor: "Lavender", minHeight: '78vh', paddingBottom: 15}}>
                 <div className="content">
                     {props.children}
                 </div>

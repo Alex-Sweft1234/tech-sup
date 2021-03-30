@@ -8,12 +8,13 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
     paperStyle: {
         padding: 15,
-        marginLeft: 60
+        marginLeft: 60,
+        minHeight: '68vh',
     },
     containStyle: {
         paddingTop: 80
@@ -32,8 +33,13 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(1),
         minWidth: 235,
     },
-    grid: {
-        
+    hh: {
+        opacity: .7,
+        paddingLeft: 20,
+    },
+    valueTask: {
+        fontSize: theme.typography.pxToRem(16),
+        paddingLeft: 10,
     }
 }))
 
@@ -77,7 +83,16 @@ export default function TaskIndex() {
         <Layout>
             <Container maxWidth={"lg"} className={cls.containStyle}>
                 <Paper className={cls.paperStyle}>
-                    <Grid container spacing={2}>
+                    <Grid container spacing={2} style={{paddingTop: 20}}>
+                        <Grid item xs={12} md={9}>
+                            <h3 className={cls.hh}>Мои задачи</h3>
+                        </Grid>
+                        <Grid item xs={12} md={3}>
+                            <Typography className={cls.valueTask}>всего задач: 5, выполненных: 0</Typography>
+                        </Grid>
+                    </Grid>
+                    <hr/>
+                    <Grid container spacing={2}  style={{marginBottom: 20}}>
                         <Grid item xs={12} md={9}>
                             <FormControl className={cls.formControl}>
                                 <InputLabel id="demo-controlled-open-select-label">Виды задач</InputLabel>
@@ -99,31 +114,6 @@ export default function TaskIndex() {
                             </form>
                         </Grid>
                     </Grid>
-                    
-                    {/*<div style={{ width: '100%' }}>
-                        <Box display="flex" p={1}>
-                            <Box p={1} flexGrow={1}>
-                                <FormControl className={cls.formControl}>
-                                    <InputLabel id="demo-controlled-open-select-label">Виды задач</InputLabel>
-                                    <Select
-                                        labelId="demo-controlled-open-select-label"
-                                        id="demo-controlled-open-select"
-                                        value={department}
-                                        onChange={handleChange}
-                                    >
-                                        {
-                                            typeTask.map(e => <MenuItem value={e.id} key={e.id}> {e.name}</MenuItem>)
-                                        }
-                                    </Select>
-                                </FormControl>
-                            </Box>
-                            <Box p={1}>
-                                <form className={cls.root} noValidate autoComplete="off">
-                                    <TextField id="standard-basic" label="Поиск по названию" />
-                                </form>
-                            </Box>
-                        </Box>
-                    </div>*/}
                     <TaskList />
                 </Paper>
             </Container>
