@@ -51,13 +51,13 @@ export default function TaskItem(props) {
                     id="panel1bh-header"
                 >
                     <Grid container spacing={2}>
-                        <Grid item xs={12} md={6}>
+                        <Grid item xs={12} md={7}>
                             <Typography className={cls.heading}>
                                 <SpeakerNotesSharpIcon className={cls.accordSum}/>&emsp;
                                 #{props.id}&nbsp;{props.taskname}
                             </Typography>
                         </Grid>
-                        <Grid item xs={12} md={5}>
+                        <Grid item xs={12} md={4}>
                             <Typography className={cls.secondaryHeading}>{props.date}</Typography>
                         </Grid>
                     </Grid>

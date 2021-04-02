@@ -9,6 +9,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Typography from '@material-ui/core/Typography';
+import ListTasks from '../../content/tasks.json';
 
 const useStyles = makeStyles((theme) => ({
     paperStyle: {
@@ -61,23 +62,45 @@ const typeTask = [
 export default function TaskIndex() {
 
     const cls = useStyles();
+    const data = ListTasks;
 
-    const [department, setDepartment] = useState(0);
+    const [status, setStatus] = useState(0);
+    const [term, setTerm] = useState('');
     const [rows, setRows] =  useState([]);
 
+    const done = data.filter(e => e.status === 2).length;
+    const filterName = data.filter(e => e.taskname.toLowerCase().indexOf(term.toLowerCase()) > -1);
+    const filterStatus = data.filter(e => e.status.toString()[0] === status.toString()[0]);
+
     const rowFiltered = () => {
-        if (department === 0){
-            return typeTask
+        if (status === 0){
+            return data
         }
-        return typeTask.filter(e => e.id.toString()[0] === department.toString()[0] )
+        return filterName.filter(e => e.status.toString()[0] === status.toString()[0]);
     }
+
+    const rowFilteredName = () => {
+        if (term.lenght === 0){
+            return data
+        }
+        return rowFiltered().filter(e => e.taskname.toLowerCase().indexOf(term.toLowerCase()) > -1);
+    }
+
     const handleChange = (event) => {
-        setDepartment(event.target.value);
+        setStatus(event.target.value);
+    };
+
+    const handleChangeName = (event) => {
+        setTerm(event.target.value);
     };
 
     useEffect(()=>{
         setRows(rowFiltered())
-    }, [department])
+    }, [status])
+
+    useEffect(()=>{
+        setRows(rowFilteredName())
+    }, [term])
 
     return(
         <Layout>
@@ -88,7 +111,7 @@ export default function TaskIndex() {
                             <h3 className={cls.hh}>Мои задачи</h3>
                         </Grid>
                         <Grid item xs={12} md={3}>
-                            <Typography className={cls.valueTask}>всего задач: 5, выполненных: 0</Typography>
+                            <Typography className={cls.valueTask}>всего задач: {data.length}, выполненных: {done}</Typography>
                         </Grid>
                     </Grid>
                     <hr/>
@@ -99,7 +122,7 @@ export default function TaskIndex() {
                                 <Select
                                     labelId="demo-controlled-open-select-label"
                                     id="demo-controlled-open-select"
-                                    value={department}
+                                    value={status}
                                     onChange={handleChange}
                                 >
                                     {
@@ -110,11 +133,13 @@ export default function TaskIndex() {
                         </Grid>
                         <Grid item xs={12} md={3}>
                             <form className={cls.root} noValidate autoComplete="off">
-                                <TextField id="standard-basic" label="Поиск по названию" />
+                                <TextField id="standard-basic" label="Поиск по названию" value={term} onChange={handleChangeName}/>
                             </form>
                         </Grid>
                     </Grid>
-                    <TaskList />
+                    <TaskList 
+                        data={rows}
+                    />
                 </Paper>
             </Container>
         </Layout>
