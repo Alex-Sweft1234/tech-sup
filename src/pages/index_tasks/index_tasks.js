@@ -74,14 +74,14 @@ export default function TaskIndex() {
 
     const rowFiltered = () => {
         if (status === 0){
-            return data
+            return filterName
         }
         return filterName.filter(e => e.status.toString()[0] === status.toString()[0]);
     }
 
     const rowFilteredName = () => {
         if (term.lenght === 0){
-            return data
+            return filterStatus
         }
         return rowFiltered().filter(e => e.taskname.toLowerCase().indexOf(term.toLowerCase()) > -1);
     }
