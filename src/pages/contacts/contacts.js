@@ -75,8 +75,15 @@ const loadScript = (src, onLoad) => {
 const init = () => {
     const myMap = new window.ymaps.Map("map", {
         center: [47.709326, 40.215239],
-        zoom: 17
+        zoom: 16
     });
+
+    myMap.geoObjects.add(new window.ymaps.Placemark([47.709326, 40.215239], {
+        balloonContent: 'ООО "TechSupport"<br />Телефон: 8 (8636) 30-04-11'
+    }, {
+        preset: 'islands#icon',
+        iconColor: '#0095b6'
+    }))
 };
 
 export default function Contacts() {

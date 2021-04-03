@@ -71,7 +71,6 @@ export default function TaskIndex() {
     const [term, setTerm] = useState('');
     const [rows, setRows] =  useState([]);
 
-    const done = data.filter(e => e.status === 2).length;
     const filterName = data.filter(e => e.taskname.toLowerCase().indexOf(term.toLowerCase()) > -1);
     const filterStatus = data.filter(e => e.status.toString()[0] === status.toString()[0]);
 
@@ -99,13 +98,9 @@ export default function TaskIndex() {
 
     useEffect(()=>{
         document.title = `TechSup | Задачи`;
-        setRows(rowFiltered())
-    }, [status])
-
-    useEffect(()=>{
-        document.title = `TechSup | Задачи`;
+        setRows(rowFiltered());
         setRows(rowFilteredName())
-    }, [term])
+    }, [status, term])
 
     return(
         <Layout>
@@ -116,11 +111,13 @@ export default function TaskIndex() {
                             <h3 className={cls.hh}>Мои задачи</h3>
                         </Grid>
                         <Grid item xs={12} md={3}>
-                            <Typography className={cls.valueTask}>всего задач: {data.length}, выполненных: {done}</Typography>
+                            <Typography className={cls.valueTask}>
+                                Всего задач: {data.length}, выполненных: {data.filter(e => e.status === 2).length}
+                            </Typography>
                         </Grid>
                     </Grid>
                     <hr/>
-                    <Grid container spacing={2}  style={{marginBottom: 20}}>
+                    <Grid container spacing={2} style={{marginBottom: 20}}>
                         <Grid item xs={12} md={9}>
                             <FormControl className={cls.formControl}>
                                 <InputLabel id="demo-controlled-open-select-label">Виды задач</InputLabel>
@@ -138,7 +135,11 @@ export default function TaskIndex() {
                         </Grid>
                         <Grid item xs={12} md={3}>
                             <form className={cls.root} noValidate autoComplete="off">
-                                <TextField id="standard-basic" label="Поиск по названию" value={term} onChange={handleChangeName}/>
+                                <TextField
+                                    id="standard-basic"
+                                    label="Поиск по названию"
+                                    value={term} onChange={handleChangeName}
+                                />
                             </form>
                         </Grid>
                     </Grid>
