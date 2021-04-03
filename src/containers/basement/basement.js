@@ -26,8 +26,8 @@ const cls = makeStyles((theme) => ({
         cursor: 'pointer',
         textDecoration: 'none',
         "&:hover": {
-            opacity: .7,
-            textDecoration: 'none'
+            opacity: .6,
+            textDecoration: 'none',
         },
     },
     labelInfo: {

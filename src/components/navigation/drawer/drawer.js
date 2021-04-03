@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { withRouter } from 'react-router-dom';
 import Drawer from '@material-ui/core/Drawer';
 import Grid from '@material-ui/core/Grid';
 import AppBar from '@material-ui/core/AppBar';
@@ -89,9 +90,38 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+const menuListTask = [
+    {
+        id: 1,
+        nameItem: 'Новая задача',
+        pathURL: `/new-task/`
+    },
+    {
+        id: 2,
+        nameItem: 'Созданные задачи',
+        pathURL: `/tech-sup/`
+    }
+]
 
+const menuListInfo = [
+    {
+        id: 1,
+        nameItem: 'Контакты',
+        pathURL: `/contacts/`
+    },
+    {
+        id: 2,
+        nameItem: 'Вход',
+        pathURL: ''
+    },
+    {
+        id: 3,
+        nameItem: 'Регистрация',
+        pathURL: ''
+    },
+]
 
-export default function MiniDrawer() {
+const MiniDrawer = ({ history }) => {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = useState(false);
@@ -140,7 +170,7 @@ export default function MiniDrawer() {
                             <span>
                                 8(8636)30-04-11
                             </span>
-                    </Grid>*/}
+                        </Grid>*/}
                     </Grid>
                 </Toolbar>
             </AppBar>
@@ -165,27 +195,29 @@ export default function MiniDrawer() {
                 </div>
                 <Divider />
                 <List>
-                    {['Новая задача', 'Созданные задачи'].map((text, index) => (
-                    <ListItem button key={text}>
+                    { menuListTask.map((item, index) => (
+                    <ListItem button key={index} onClick={() => history.push(item.pathURL)}>
                         <ListItemIcon>
                             {index === 0 ? <AddToPhotosIcon /> : <AssignmentIcon />}
                         </ListItemIcon>
-                        <ListItemText primary={text} />
+                        <ListItemText primary={item.nameItem} />
                     </ListItem>
                     ))}
                 </List>
                 <Divider />
                 <List>
-                    {['Контакты', 'Вход', 'Регистрация'].map((text, index) => (
-                    <ListItem button key={text}>
-                        <ListItemIcon>
-                            {index === 0 ? <ContactsIcon /> : index === 1 ? <InputIcon /> : <PersonAddIcon />}
-                        </ListItemIcon>
-                        <ListItemText primary={text} />
-                    </ListItem>
+                    { menuListInfo.map((item, index) => (
+                        <ListItem button key={index} onClick={() => history.push(item.pathURL)}>
+                            <ListItemIcon>
+                                {index === 0 ? <ContactsIcon /> : index === 1 ? <InputIcon /> : <PersonAddIcon />}
+                            </ListItemIcon>
+                            <ListItemText primary={item.nameItem} />
+                        </ListItem>
                     ))}
                 </List>
             </Drawer>
         </div>
     );
 }
+
+export default withRouter(MiniDrawer);

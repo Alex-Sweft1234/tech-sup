@@ -35,12 +35,15 @@ const useStyles = makeStyles((theme) => ({
         minWidth: 235,
     },
     hh: {
-        opacity: .7,
+        opacity: .8,
         paddingLeft: 20,
+        color: 'DarkSlateGray'
     },
     valueTask: {
         fontSize: theme.typography.pxToRem(16),
+        opacity: .9,
         paddingLeft: 10,
+        color: 'DarkSlateGray'
     }
 }))
 
@@ -55,7 +58,7 @@ const typeTask = [
     },
     {
         id: 2,
-        name: 'Закрытые'
+        name: 'Завершенные'
     }
 ]
 
@@ -95,10 +98,12 @@ export default function TaskIndex() {
     };
 
     useEffect(()=>{
+        document.title = `TechSup | Задачи`;
         setRows(rowFiltered())
     }, [status])
 
     useEffect(()=>{
+        document.title = `TechSup | Задачи`;
         setRows(rowFilteredName())
     }, [term])
 

@@ -24,15 +24,15 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.text.secondary,
     },
     statusCompleted: {
+        fontSize: theme.typography.pxToRem(27),
         position: 'relative',
-        bottom: 2,
-        opacity: .6,
+        bottom: 4,
         color: 'Teal'
     },
     statusNotCompleted: {
+        fontSize: theme.typography.pxToRem(27),
         position: 'relative',
-        bottom: 3,
-        opacity: .6,
+        bottom: 4,
         color: 'DarkOrange'
     },
     accordSumText: {
@@ -41,6 +41,23 @@ const useStyles = makeStyles((theme) => ({
     margin: {
         margin: theme.spacing(1),
     },
+    accordHover: {
+        "&:hover": {
+            backgroundColor: 'Azure'
+        },
+    },
+    numberItem: {
+        fontSize: theme.typography.pxToRem(14),
+        backgroundColor: 'LightSlateGray',
+        color: 'white',
+        paddingLeft: 7,
+        paddingRight: 7,
+        paddingBottom: 1,
+        paddingTop: 1,
+        borderRadius: 3,
+        position: 'relative',
+        bottom: 3,
+    }
 }));
 
 export default function TaskItem(props) {
@@ -57,13 +74,14 @@ export default function TaskItem(props) {
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1bh-content"
                     id="panel1bh-header"
+                    className={cls.accordHover}
                 >
                     <Grid container spacing={2}>
                         <Grid item xs={12} md={7}>
                             <Typography className={cls.heading}>
                                 {props.status === 2 ? <CheckBoxRoundedIcon className={cls.statusCompleted}/> : <WatchLaterRoundedIcon className={cls.statusNotCompleted}/>}
                                 &emsp;
-                                #{props.id}&nbsp;{props.taskname}
+                                <span className={cls.numberItem}>#{props.id}</span>&nbsp;{props.taskname}
                             </Typography>
                         </Grid>
                         <Grid item xs={12} md={4}>
