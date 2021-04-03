@@ -7,7 +7,8 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Button from '@material-ui/core/Button';
 import { Grid } from '@material-ui/core';
-import SpeakerNotesSharpIcon from '@material-ui/icons/SpeakerNotesSharp';
+import CheckBoxRoundedIcon from '@material-ui/icons/CheckBoxRounded';
+import WatchLaterRoundedIcon from '@material-ui/icons/WatchLaterRounded';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -22,10 +23,17 @@ const useStyles = makeStyles((theme) => ({
         fontSize: theme.typography.pxToRem(15),
         color: theme.palette.text.secondary,
     },
-    accordSum: {
+    statusCompleted: {
         position: 'relative',
-        top: 1,
-        opacity: .6
+        bottom: 2,
+        opacity: .6,
+        color: 'Teal'
+    },
+    statusNotCompleted: {
+        position: 'relative',
+        bottom: 3,
+        opacity: .6,
+        color: 'DarkOrange'
     },
     accordSumText: {
         fontSize: theme.typography.pxToRem(16),
@@ -53,7 +61,8 @@ export default function TaskItem(props) {
                     <Grid container spacing={2}>
                         <Grid item xs={12} md={7}>
                             <Typography className={cls.heading}>
-                                <SpeakerNotesSharpIcon className={cls.accordSum}/>&emsp;
+                                {props.status === 2 ? <CheckBoxRoundedIcon className={cls.statusCompleted}/> : <WatchLaterRoundedIcon className={cls.statusNotCompleted}/>}
+                                &emsp;
                                 #{props.id}&nbsp;{props.taskname}
                             </Typography>
                         </Grid>

@@ -12,6 +12,7 @@ export default function Task (props) {
                                     taskname={e.taskname}
                                     date={e.date}
                                     descript={e.descript}
+                                    status={e.status}
                                 />
                             </div>
                 })
