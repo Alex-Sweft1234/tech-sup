@@ -12,8 +12,8 @@ import EmailIcon from '@material-ui/icons/Email';
 const useStyles = makeStyles((theme) => ({
     paperStyle: {
         padding: 15,
-        marginLeft: 60,
-        minHeight: '68vh',
+        marginLeft: 40,
+        //minHeight: '68vh',
     },
     containStyle: {
         paddingTop: 80

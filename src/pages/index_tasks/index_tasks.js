@@ -23,8 +23,7 @@ const useStyles = makeStyles((theme) => ({
         paddingTop: 15,
         paddingLeft: 15,
         paddingRight: 15,
-        marginLeft: 60,
-        //minHeight: '68vh',
+        marginLeft: 40,
     },
     containStyle: {
         paddingTop: 80
@@ -32,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
         '& > *': {
             margin: theme.spacing(1),
-            minWidth: 235
+            minWidth: 230
         },
     },
     button: {
@@ -41,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     },
     formControl: {
         margin: theme.spacing(1),
-        minWidth: 235,
+        minWidth: 230,
         textAlign: 'left'
     },
     hh: {
@@ -113,7 +112,7 @@ export default function TaskIndex() {
     };
 
     useEffect(()=>{
-        document.title = `TechSup | Задачи`;
+        document.title = `TechSup | Мои задачи`;
         setRows(rowFiltered());
         setRows(rowFilteredName())
     }, [status, term])
@@ -134,7 +133,7 @@ export default function TaskIndex() {
                     </Grid>
                     <hr/>
                     <Grid container spacing={2} style={{marginBottom: 10, textAlign: 'center'}}>
-                        <Grid item xs={12} md={4}>
+                        <Grid item xs={12} md={6}>
                             <FormControl className={cls.formControl}>
                                 <InputLabel id="demo-controlled-open-select-label">Виды задач</InputLabel>
                                 <Select
@@ -149,13 +148,12 @@ export default function TaskIndex() {
                                 </Select>
                             </FormControl>
                         </Grid>
-                        <Grid item xs={12} md={4} style={{paddingTop: 16}}>
+                        {/*<Grid item xs={12} md={4} style={{paddingTop: 16}}>
                             <MuiPickersUtilsProvider utils={DateFnsUtils} >
-                                {/*<KeyboardDatePicker
+                                <KeyboardDatePicker
                                     disableToolbar
                                     variant="inline"
                                     format="dd/MM/yyyy"
-                                    //margin="normal"
                                     id="date-picker-inline"
                                     label="По дате"
                                     value={selectedDate}
@@ -163,10 +161,10 @@ export default function TaskIndex() {
                                     KeyboardButtonProps={{
                                         'aria-label': 'change date',
                                     }}
-                                />*/}
+                                />
                             </MuiPickersUtilsProvider>
-                        </Grid>
-                        <Grid item xs={12} md={4}>
+                        </Grid>*/}
+                        <Grid item xs={12} md={6}>
                             <form className={cls.root} noValidate autoComplete="off">
                                 <TextField
                                     id="standard-basic"
@@ -177,7 +175,7 @@ export default function TaskIndex() {
                         </Grid>
                     </Grid>
                 </Paper>
-                <div style={{marginLeft: 60}}>
+                <div style={{marginLeft: 40}}>
                     <TaskList 
                         data={rows}
                     />

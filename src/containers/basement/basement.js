@@ -44,8 +44,8 @@ export default function Footer() {
 
     return(
         <div className={clsSt.footCls} style={{paddingBottom: 30}}>
-            <Grid container spacing={0} style={{paddingLeft: 15, paddingTop: 30}}>
-                <Grid item xs={12} md={2}>
+            <Grid container spacing={0} style={{paddingTop: 30, textAlign: 'center'}}>
+                <Grid item xs={12} md={1}>
                     {/*<p>
                         &ensp;2021 &copy; by TechSupport
                     </p>*/}
@@ -112,6 +112,11 @@ export default function Footer() {
                             <span className={clsSt.labelInfo}>Наши партнёры</span>
                         </a>
                     </p>
+                </Grid>
+                <Grid item xs={12} md={1}>
+                    {/*<p>
+                        &ensp;2021 &copy; by TechSupport
+                    </p>*/}
                 </Grid>
             </Grid>
         </div>

@@ -7,7 +7,7 @@ import Layout from '../../containers/layout/layout.js';
 const useStyles = makeStyles((theme) => ({
     paperStyle: {
         padding: 15,
-        marginLeft: 60,
+        marginLeft: 40,
         minHeight: '68vh',
     },
     containStyle: {
