@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
     },
     accordHover: {
         "&:hover": {
-            //backgroundColor: 'Azure'
+            borderRadius: 5,
             backgroundColor: 'AliceBlue',
         },
     },

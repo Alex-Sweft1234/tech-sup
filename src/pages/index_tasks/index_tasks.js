@@ -10,12 +10,21 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Typography from '@material-ui/core/Typography';
 import ListTasks from '../../content/tasks.json';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+    MuiPickersUtilsProvider,
+    KeyboardTimePicker,
+    KeyboardDatePicker,
+} from '@material-ui/pickers';
+import 'date-fns';
 
 const useStyles = makeStyles((theme) => ({
     paperStyle: {
-        padding: 15,
+        paddingTop: 15,
+        paddingLeft: 15,
+        paddingRight: 15,
         marginLeft: 60,
-        minHeight: '68vh',
+        //minHeight: '68vh',
     },
     containStyle: {
         paddingTop: 80
@@ -23,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
         '& > *': {
             margin: theme.spacing(1),
-            width: '30ch',
+            minWidth: 235
         },
     },
     button: {
@@ -33,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
     formControl: {
         margin: theme.spacing(1),
         minWidth: 235,
+        textAlign: 'left'
     },
     hh: {
         opacity: .8,
@@ -96,6 +106,12 @@ export default function TaskIndex() {
         setTerm(event.target.value);
     };
 
+    const [selectedDate, setSelectedDate] = useState(new Date('2021-04-02T21:11:54'));
+
+    const handleDateChange = (date) => {
+        setSelectedDate(date);
+    };
+
     useEffect(()=>{
         document.title = `TechSup | Задачи`;
         setRows(rowFiltered());
@@ -117,8 +133,8 @@ export default function TaskIndex() {
                         </Grid>
                     </Grid>
                     <hr/>
-                    <Grid container spacing={2} style={{marginBottom: 20}}>
-                        <Grid item xs={12} md={9}>
+                    <Grid container spacing={2} style={{marginBottom: 10, textAlign: 'center'}}>
+                        <Grid item xs={12} md={4}>
                             <FormControl className={cls.formControl}>
                                 <InputLabel id="demo-controlled-open-select-label">Виды задач</InputLabel>
                                 <Select
@@ -133,7 +149,24 @@ export default function TaskIndex() {
                                 </Select>
                             </FormControl>
                         </Grid>
-                        <Grid item xs={12} md={3}>
+                        <Grid item xs={12} md={4} style={{paddingTop: 16}}>
+                            <MuiPickersUtilsProvider utils={DateFnsUtils} >
+                                {/*<KeyboardDatePicker
+                                    disableToolbar
+                                    variant="inline"
+                                    format="dd/MM/yyyy"
+                                    //margin="normal"
+                                    id="date-picker-inline"
+                                    label="По дате"
+                                    value={selectedDate}
+                                    onChange={handleDateChange}
+                                    KeyboardButtonProps={{
+                                        'aria-label': 'change date',
+                                    }}
+                                />*/}
+                            </MuiPickersUtilsProvider>
+                        </Grid>
+                        <Grid item xs={12} md={4}>
                             <form className={cls.root} noValidate autoComplete="off">
                                 <TextField
                                     id="standard-basic"
@@ -143,10 +176,12 @@ export default function TaskIndex() {
                             </form>
                         </Grid>
                     </Grid>
+                </Paper>
+                <div style={{marginLeft: 60}}>
                     <TaskList 
                         data={rows}
                     />
-                </Paper>
+                </div>
             </Container>
         </Layout>
     )
