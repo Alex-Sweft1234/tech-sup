@@ -113,7 +113,7 @@ export default function Footer() {
                         </a>
                     </p>
                 </Grid>
-                <Grid item xs={12} md={1}>
+                <Grid item xs={12} md={2} style={{textAlign: 'center'}}>
                     {/*<p>
                         &ensp;2021 &copy; by TechSupport
                     </p>*/}
