@@ -17,8 +17,8 @@ export default class App extends Component {
             <Route path="/tech-sup/" component = {IndexTask} exact />
             <Route path="/new-task/" component = {NewTask} />
             <Route path="/contacts/" component = {Contacts} />
-            <Route path="/partners  /" component = {Partners} />
-          </Router>*
+            <Route path="/partners/" component = {Partners} />
+          </Router>
       </div>
       
     )
