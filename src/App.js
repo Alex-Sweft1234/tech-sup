@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import IndexTask from './pages/index_tasks/index_tasks.js';
 import Contacts from './pages/contacts/contacts.js';
 import NewTask from './pages/new_task/new_task.js';
+import Partners from './pages/partners/partners.js';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 export default class App extends Component {
@@ -11,12 +12,19 @@ export default class App extends Component {
       <div>
           <CssBaseline />
 
-          <Router basename="/">
+          <Router basename="/joonline">
 
             <Route path="/tech-sup/" component = {IndexTask} exact />
             <Route path="/new-task/" component = {NewTask} />
             <Route path="/contacts/" component = {Contacts} />
+            <Route path="/partners  /" component = {Partners} />
           </Router>
+          {/*<Switch>
+            <Route exact path="/tech-sup/" render={props => <IndexTask {...props} />} />
+            <Route exact path="/new-task/" render={props => <NewTask {...props} />}
+            />
+ 
+          </Switch>*/}
       </div>
       
     )

@@ -11,6 +11,13 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
 import LensSharpIcon from '@material-ui/icons/LensSharp';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+    MuiPickersUtilsProvider,
+    KeyboardTimePicker,
+    KeyboardDatePicker,
+} from '@material-ui/pickers';
+import 'date-fns';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -90,6 +97,11 @@ export default function NewTask() {
         setStatus(event.target.value);
     };
 
+    const [selectedDate, setSelectedDate] = useState(new Date('2021-04-02T21:11:54'));
+
+    const handleDateChange = (date) => {
+        setSelectedDate(date);
+    };
 
     useEffect(() => {
         document.title = `TechSup | Новая задача`;
@@ -110,26 +122,44 @@ export default function NewTask() {
                     </Grid>
                     <hr/>
                     <form className={cls.root} noValidate autoComplete="off">
-                        <div>
-                            <FormControl className={cls.formControl}>
-                                <InputLabel id="demo-controlled-open-select-label">Приоритет</InputLabel>
-                                <Select
-                                    labelId="demo-controlled-open-select-label"
-                                    id="demo-controlled-open-select"
-                                    value={status}
-                                    onChange={handleChange}
-                                >
-                                    {
-                                        priorityType.map(e => <MenuItem value={e.id} key={e.id}>
-                                            <span style={{color: e.color, position: 'relative', bottom: 2}}>
-                                                &nbsp;<LensSharpIcon />
-                                            </span> 
-                                                &emsp;{e.name}
-                                        </MenuItem>)
-                                    }
-                                </Select>
-                            </FormControl>
-                        </div>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12} md={9} style={{paddingTop: 16}}>
+                                <FormControl className={cls.formControl}>
+                                    <InputLabel id="demo-controlled-open-select-label">Приоритет</InputLabel>
+                                    <Select
+                                        labelId="demo-controlled-open-select-label"
+                                        id="demo-controlled-open-select"
+                                        value={status}
+                                        onChange={handleChange}
+                                    >
+                                        {
+                                            priorityType.map(e => <MenuItem value={e.id} key={e.id}>
+                                                <span style={{color: e.color, position: 'relative', bottom: 2}}>
+                                                    &nbsp;<LensSharpIcon />
+                                                </span> 
+                                                    &emsp;{e.name}
+                                            </MenuItem>)
+                                        }
+                                    </Select>
+                                </FormControl>
+                            </Grid>
+                            {/*<Grid item xs={12} md={3} style={{paddingTop: 16}}>
+                                <MuiPickersUtilsProvider utils={DateFnsUtils} >
+                                    <KeyboardDatePicker
+                                        disableToolbar
+                                        variant="inline"
+                                        format="dd/MM/yyyy"
+                                        id="date-picker-inline"
+                                        label="По дате"
+                                        value={selectedDate}
+                                        onChange={handleDateChange}
+                                        KeyboardButtonProps={{
+                                            'aria-label': 'change date',
+                                        }}
+                                    />
+                                </MuiPickersUtilsProvider>
+                            </Grid>*/}
+                        </Grid>
                         <div style={{marginBottom: 20}}>
                             <TextField id="outlined-basic" label="Тема задачи" variant="outlined" fullWidth/>
                         </div>

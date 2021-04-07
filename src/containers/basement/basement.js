@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter, Link } from 'react-router-dom'
 import {makeStyles, Grid} from "@material-ui/core";
 import LocalPhoneIcon from '@material-ui/icons/LocalPhone';
 import InfoIcon from '@material-ui/icons/Info';
@@ -38,7 +39,7 @@ const cls = makeStyles((theme) => ({
     }
 }));
 
-export default function Footer() {
+const Footer = ({ history }) => {
 
     const clsSt = cls();
 
@@ -72,10 +73,10 @@ export default function Footer() {
                         Задачи
                     </p>
                     <p>
-                        <a href="#" className={clsSt.aHref}>
+                        <Link to={ `/new-task` } className={clsSt.aHref}>
                             <AddToPhotosIcon style={{fontSize: 20}}/>&nbsp;
                             <span className={clsSt.labelInfo}>Создать задачу</span>
-                        </a>
+                        </Link>
                     </p>
                     <p>
                         <a href="#" className={clsSt.aHref}>
@@ -101,16 +102,16 @@ export default function Footer() {
                         </a>
                     </p>
                     <p>
-                        <a href="#" className={clsSt.aHref}>
+                        <Link to={ `/contacts` } className={clsSt.aHref}>
                             <ExploreIcon style={{fontSize: 20}}/>&nbsp;
                             <span className={clsSt.labelInfo}>Как нас найти</span>
-                        </a>
+                        </Link>
                     </p>
                     <p>
-                        <a href="#" className={clsSt.aHref}>
+                        <Link to={ `/partners` } className={clsSt.aHref}>
                             <GroupIcon style={{fontSize: 20}}/>&nbsp;
                             <span className={clsSt.labelInfo}>Наши партнёры</span>
-                        </a>
+                        </Link>
                     </p>
                 </Grid>
                 <Grid item xs={12} md={2} style={{textAlign: 'center'}}>
@@ -122,3 +123,5 @@ export default function Footer() {
         </div>
     )
 }
+
+export default withRouter(Footer);

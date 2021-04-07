@@ -38,7 +38,6 @@ const useStyles = makeStyles((theme) => ({
         bottom: 5
     },
     root: {
-        margin: 10,
         textAlign: 'center'
     },
     labelHref: {
@@ -111,7 +110,7 @@ export default function Contacts() {
                     </Grid>
                     <hr/>
                     <div>
-                        <div id="map" style={{ width: '100%', height: 300, padding: 10}} />
+                        <div id="map" style={{ width: '100%', height: 300, paddingBottom: 15}} />
                     </div>
                     <Card className={cls.root}>
                             <CardContent style={{backgroundColor: '#fafbfc'}}>
@@ -134,7 +133,7 @@ export default function Contacts() {
                                     </a>
                                 </Typography>
                             </CardContent>
-                            </Card>
+                        </Card>
                 </Paper>
             </Container>
         </Layout>
