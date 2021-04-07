@@ -12,19 +12,13 @@ export default class App extends Component {
       <div>
           <CssBaseline />
 
-          <Router basename="/joonline">
+          <Router basename="/">
 
             <Route path="/tech-sup/" component = {IndexTask} exact />
             <Route path="/new-task/" component = {NewTask} />
             <Route path="/contacts/" component = {Contacts} />
             <Route path="/partners  /" component = {Partners} />
-          </Router>
-          {/*<Switch>
-            <Route exact path="/tech-sup/" render={props => <IndexTask {...props} />} />
-            <Route exact path="/new-task/" render={props => <NewTask {...props} />}
-            />
- 
-          </Switch>*/}
+          </Router>*
       </div>
       
     )
