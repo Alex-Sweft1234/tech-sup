@@ -46,12 +46,12 @@ const Footer = ({ history }) => {
     return(
         <div className={clsSt.footCls} style={{paddingBottom: 30}}>
             <Grid container spacing={0} style={{paddingTop: 30, textAlign: 'center'}}>
-                <Grid item xs={12} md={1}>
+                <Grid item xs={12} md={2}>
                     {/*<p>
                         &ensp;2021 &copy; by TechSupport
                     </p>*/}
                 </Grid>
-                <Grid style={{paddingLeft: 90}} item xs={12} md={3}>
+                <Grid style={{paddingLeft: 90}} item xs={12} md={8}>
                     <p style={{fontSize: 18}}>
                         Контакты
                     </p>
@@ -66,52 +66,6 @@ const Footer = ({ history }) => {
                             <MailIcon style={{fontSize: 20}}/>&nbsp;
                             <span className={clsSt.labelInfo}>techsup@support.ru</span>
                         </a>
-                    </p>
-                </Grid>
-                <Grid style={{paddingLeft: 90}} item xs={12} md={3}>
-                    <p style={{fontSize: 18}}>
-                        Задачи
-                    </p>
-                    <p>
-                        <Link to={ `/new-task` } className={clsSt.aHref}>
-                            <AddToPhotosIcon style={{fontSize: 20}}/>&nbsp;
-                            <span className={clsSt.labelInfo}>Создать задачу</span>
-                        </Link>
-                    </p>
-                    <p>
-                        <a href="#" className={clsSt.aHref}>
-                            <AssignmentIcon style={{fontSize: 20}}/>&nbsp;
-                            <span className={clsSt.labelInfo}>Активные задачи</span>
-                        </a>
-                    </p>
-                    <p>
-                        <a href="#" className={clsSt.aHref}>
-                            <AssignmentTurnedInIcon style={{fontSize: 20}}/>&nbsp;
-                            <span className={clsSt.labelInfo}>Архив задач</span>
-                        </a>
-                    </p>
-                </Grid>
-                <Grid style={{paddingLeft: 90}} item xs={12} md={3}>
-                    <p style={{fontSize: 18}}>
-                        О нас
-                    </p>
-                    <p>
-                        <Link to={ `/info` } className={clsSt.aHref}>
-                            <InfoIcon style={{fontSize: 20}}/>&nbsp;
-                            <span className={clsSt.labelInfo}>Общие сведения</span>
-                        </Link>
-                    </p>
-                    <p>
-                        <Link to={ `/contacts` } className={clsSt.aHref}>
-                            <ExploreIcon style={{fontSize: 20}}/>&nbsp;
-                            <span className={clsSt.labelInfo}>Как нас найти</span>
-                        </Link>
-                    </p>
-                    <p>
-                        <Link to={ `/partners` } className={clsSt.aHref}>
-                            <GroupIcon style={{fontSize: 20}}/>&nbsp;
-                            <span className={clsSt.labelInfo}>Наши партнёры</span>
-                        </Link>
                     </p>
                 </Grid>
                 <Grid item xs={12} md={2} style={{textAlign: 'center'}}>

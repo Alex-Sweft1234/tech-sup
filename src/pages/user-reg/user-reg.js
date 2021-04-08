@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Container, Paper, Grid} from "@material-ui/core";
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Layout from '../../containers/layout/layout.js';
+import LayoutAuth from '../../containers/layout-auth/layout-auth.js';
 
 const useStyles = makeStyles((theme) => ({
     paperStyle: {
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function Partners() {
+export default function Auth() {
     
     const cls = useStyles();
 
@@ -36,12 +36,12 @@ export default function Partners() {
     }, []);
 
     return(
-        <Layout>
+        <LayoutAuth>
             <Container maxWidth={"lg"} className={cls.containStyle}>
                 <Paper className={cls.paperStyle}>
                     <Grid container spacing={2} style={{paddingTop: 20}}>
                         <Grid item xs={12} md={10}>
-                            <h3 className={cls.hh}>Наши партнёры</h3>
+                            <h3 className={cls.hh}>Регистрация</h3>
                         </Grid>
                         {/*<Grid item xs={12} md={2}>
                             <Typography className={cls.valueTask}>Создание</Typography>
@@ -51,6 +51,6 @@ export default function Partners() {
                     
                 </Paper>
             </Container>
-        </Layout>
+        </LayoutAuth>
     )
 }

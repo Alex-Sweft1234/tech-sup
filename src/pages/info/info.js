@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function Partners() {
+export default function Info() {
     
     const cls = useStyles();
 
@@ -41,7 +41,7 @@ export default function Partners() {
                 <Paper className={cls.paperStyle}>
                     <Grid container spacing={2} style={{paddingTop: 20}}>
                         <Grid item xs={12} md={10}>
-                            <h3 className={cls.hh}>Наши партнёры</h3>
+                            <h3 className={cls.hh}>О нашей компании</h3>
                         </Grid>
                         {/*<Grid item xs={12} md={2}>
                             <Typography className={cls.valueTask}>Создание</Typography>

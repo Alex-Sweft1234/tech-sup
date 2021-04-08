@@ -4,6 +4,9 @@ import IndexTask from './pages/index_tasks/index_tasks.js';
 import Contacts from './pages/contacts/contacts.js';
 import NewTask from './pages/new_task/new_task.js';
 import Partners from './pages/partners/partners.js';
+import Info from './pages/info/info.js';
+import Auth from './pages/auth/auth.js';
+import UserReg from './pages/user-reg/user-reg.js';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 export default class App extends Component {
@@ -18,6 +21,9 @@ export default class App extends Component {
             <Route path="/new-task/" component = {NewTask} />
             <Route path="/contacts/" component = {Contacts} />
             <Route path="/partners/" component = {Partners} />
+            <Route path="/info/" component = {Info} />
+            <Route path="/auth/" component = {Auth} />
+            <Route path="/user-reg/" component = {UserReg} />
           </Router>
       </div>
       

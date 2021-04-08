@@ -114,12 +114,12 @@ const menuListInfo = [
     {
         id: 2,
         nameItem: 'Вход',
-        pathURL: ''
+        pathURL: `/auth/`
     },
     {
         id: 3,
         nameItem: 'Регистрация',
-        pathURL: ''
+        pathURL: `/user-reg/`
     },
 ]
 
