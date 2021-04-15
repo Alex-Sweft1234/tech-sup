@@ -9,6 +9,7 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 import MailIcon from '@material-ui/icons/Mail';
 import GroupIcon from '@material-ui/icons/Group';
+import BlurOnIcon from '@material-ui/icons/BlurOn';
 
 const cls = makeStyles((theme) => ({
     footCls: {
@@ -44,14 +45,9 @@ const Footer = ({ history }) => {
     const clsSt = cls();
 
     return(
-        <div className={clsSt.footCls} style={{paddingBottom: 30}}>
-            <Grid container spacing={0} style={{paddingTop: 30, textAlign: 'center'}}>
-                <Grid item xs={12} md={1}>
-                    {/*<p>
-                        &ensp;2021 &copy; by TechSupport
-                    </p>*/}
-                </Grid>
-                <Grid style={{paddingLeft: 90}} item xs={12} md={3}>
+        <div className={clsSt.footCls} style={{paddingLeft: 80, paddingBottom: 30}}>
+            <Grid container spacing={0} style={{paddingTop: 31, textAlign: 'center'}}>
+                <Grid item xs={12} md={3}>
                     <p style={{fontSize: 18}}>
                         Контакты
                     </p>
@@ -68,7 +64,7 @@ const Footer = ({ history }) => {
                         </a>
                     </p>
                 </Grid>
-                <Grid style={{paddingLeft: 90}} item xs={12} md={3}>
+                <Grid item xs={12} md={3}>
                     <p style={{fontSize: 18}}>
                         Задачи
                     </p>
@@ -91,7 +87,7 @@ const Footer = ({ history }) => {
                         </a>
                     </p>
                 </Grid>
-                <Grid style={{paddingLeft: 90}} item xs={12} md={3}>
+                <Grid item xs={12} md={3}>
                     <p style={{fontSize: 18}}>
                         О нас
                     </p>
@@ -114,10 +110,13 @@ const Footer = ({ history }) => {
                         </Link>
                     </p>
                 </Grid>
-                <Grid item xs={12} md={2} style={{textAlign: 'center'}}>
-                    {/*<p>
+                <Grid item xs={12} md={3} style={{textAlign: 'center'}}>
+                    <div style={{fontSize: 16, position: 'relative', top: 25}}>
                         &ensp;2021 &copy; by TechSupport
-                    </p>*/}
+                    </div>
+                    <div style={{paddingTop: 40}}>
+                        <BlurOnIcon fontSize="large"/>
+                    </div>
                 </Grid>
             </Grid>
         </div>

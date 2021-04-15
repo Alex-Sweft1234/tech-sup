@@ -1,14 +1,9 @@
 import React from 'react';
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter} from 'react-router-dom'
 import {makeStyles, Grid} from "@material-ui/core";
 import LocalPhoneIcon from '@material-ui/icons/LocalPhone';
-import InfoIcon from '@material-ui/icons/Info';
-import ExploreIcon from '@material-ui/icons/Explore';
-import AddToPhotosIcon from '@material-ui/icons/AddToPhotos';
-import AssignmentIcon from '@material-ui/icons/Assignment';
-import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 import MailIcon from '@material-ui/icons/Mail';
-import GroupIcon from '@material-ui/icons/Group';
+import BlurOnIcon from '@material-ui/icons/BlurOn';
 
 const cls = makeStyles((theme) => ({
     footCls: {
@@ -44,17 +39,17 @@ const Footer = ({ history }) => {
     const clsSt = cls();
 
     return(
-        <div className={clsSt.footCls} style={{paddingBottom: 30}}>
-            <Grid container spacing={0} style={{paddingTop: 30, textAlign: 'center'}}>
+        <div className={clsSt.footCls}>
+            <Grid container spacing={0} style={{paddingTop: 20, paddingBottom: 12, paddingLeft: 80, textAlign: 'center'}}>
                 <Grid item xs={12} md={2}>
                     {/*<p>
                         &ensp;2021 &copy; by TechSupport
                     </p>*/}
                 </Grid>
-                <Grid style={{paddingLeft: 90}} item xs={12} md={8}>
-                    <p style={{fontSize: 18}}>
+                <Grid item xs={12} md={4}>
+                    {/*<p style={{fontSize: 18}}>
                         Контакты
-                    </p>
+                    </p>*/}
                     <p>
                         <a href="#" className={clsSt.aHref}>
                             <LocalPhoneIcon style={{fontSize: 20}}/>&nbsp;
@@ -68,10 +63,10 @@ const Footer = ({ history }) => {
                         </a>
                     </p>
                 </Grid>
-                <Grid item xs={12} md={2} style={{textAlign: 'center'}}>
-                    {/*<p>
-                        &ensp;2021 &copy; by TechSupport
-                    </p>*/}
+                <Grid item xs={12} md={4}>
+                    <div style={{fontSize: 15, position: 'relative', top: 12, paddingBottom: 20}}>
+                        <BlurOnIcon fontSize="large"/>&ensp;2021 &copy; by TechSupport
+                    </div>
                 </Grid>
             </Grid>
         </div>

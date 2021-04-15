@@ -6,7 +6,7 @@ export default function Task (props) {
         <div>
             {
                 props.data.map((e) => {
-                    return  <div style={{marginBottom: 7}}>
+                    return  <div style={{marginBottom: 5}}>
                                 <TaskItem 
                                     id={e.id}
                                     taskname={e.taskname}

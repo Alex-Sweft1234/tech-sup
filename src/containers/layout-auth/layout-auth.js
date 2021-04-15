@@ -6,7 +6,7 @@ export default function LayoutAuth(props) {
     return (
         <Fragment>
             <Drawer />  
-            <div className="layout" style={{backgroundColor: "Lavender", minHeight: '82vh', paddingBottom: 15}}>
+            <div className="layout" style={{backgroundColor: "Lavender", minHeight: '89vh', paddingBottom: 15}}>
                 <div className="content">
                     {props.children}
                 </div>

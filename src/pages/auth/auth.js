@@ -23,6 +23,13 @@ const useStyles = makeStyles((theme) => ({
         opacity: .9,
         color: 'DarkSlateGray'
     },
+    root: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        '& > *': {
+            margin: theme.spacing(1),
+        },
+    },
 }))
 
 

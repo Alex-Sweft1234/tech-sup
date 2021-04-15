@@ -22,6 +22,7 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 import ContactsIcon from '@material-ui/icons/Contacts';
 import InputIcon from '@material-ui/icons/Input';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import BlurOnIcon from '@material-ui/icons/BlurOn';
 
 const drawerWidth = 270;
 
@@ -160,7 +161,7 @@ const MiniDrawer = ({ history }) => {
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={8}>
                             <Typography variant="h6" noWrap>
-                                TechSupport
+                                <BlurOnIcon fontSize="large" style={{position: 'relative', bottom: 3}}/>&nbsp;TechSupport
                             </Typography>
                         </Grid>
                         {/*<Grid style={{fontSize: 18, color: 'Salmon'}} item xs={12} sm={2}>
