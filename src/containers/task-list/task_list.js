@@ -6,7 +6,7 @@ export default function TaskList (props) {
         <div>
             {
                 props.data.map((e, index) => {
-                    return  <div style={{marginBottom: 5}}>
+                    return  <div style={{marginBottom: 3}}>
                                 <TaskItem 
                                     key={index}
                                     id={e.id}

@@ -4,6 +4,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Layout from '../../containers/layout/layout.js';
 import Photo from '../../img/info-techsup.jpg';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
     paperStyle: {
@@ -33,6 +34,9 @@ const useStyles = makeStyles((theme) => ({
             margin: theme.spacing(1),
         },
     },
+    button: {
+        margin: theme.spacing(1),
+    },
 }))
 
 
@@ -61,6 +65,16 @@ export default function Info() {
                         По мере развития отечественного бизнеса возрастает и роль квалифицированной помощи при возникновении проблем в процессе использования информационных сервисов, необходимой сотрудникам компаний, их партнерам и клиентам.
                         При этом особенно важно, чтобы эта помощь оказывалась специалистами, обладающими необходимыми компетенциями и способными быстро разрешить любой возникший во время эксплуатации информационной системы организации вопрос.
                     </Typography>
+                    <div>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            size="small"
+                            className={cls.button}
+                        >
+                            К задачам
+                        </Button>
+                    </div>
                 </Paper>
             </Container>
         </Layout>

@@ -8,6 +8,7 @@ import CardContent from '@material-ui/core/CardContent';
 import HouseIcon from '@material-ui/icons/House';
 import PhoneInTalkIcon from '@material-ui/icons/PhoneInTalk';
 import EmailIcon from '@material-ui/icons/Email';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
     paperStyle: {
@@ -60,7 +61,11 @@ const useStyles = makeStyles((theme) => ({
         position: 'relative',
         bottom: 7,
         color: 'DarkSlateGray'
-    }
+    },
+    button: {
+        margin: theme.spacing(1),
+        marginTop: 20
+    },
 }))
 
 const loadScript = (src, onLoad) => {
@@ -134,6 +139,16 @@ export default function Contacts() {
                                 </Typography>
                             </CardContent>
                         </Card>
+                        <div>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                size="small"
+                                className={cls.button}
+                            >
+                                К задачам
+                            </Button>
+                        </div>
                 </Paper>
             </Container>
         </Layout>

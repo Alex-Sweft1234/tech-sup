@@ -132,8 +132,8 @@ export default function TaskIndex() {
                         </Grid>
                     </Grid>
                     <hr/>
-                    <Grid container spacing={2} style={{marginBottom: 10, textAlign: 'center'}}>
-                        <Grid item xs={12} md={6}>
+                    <Grid container spacing={1} style={{marginBottom: 10, textAlign: 'center'}}>
+                        <Grid item xs={12} md={4}>
                             <FormControl className={cls.formControl}>
                                 <InputLabel id="demo-controlled-open-select-label">Виды задач</InputLabel>
                                 <Select
@@ -148,7 +148,7 @@ export default function TaskIndex() {
                                 </Select>
                             </FormControl>
                         </Grid>
-                        {/*<Grid item xs={12} md={4} style={{paddingTop: 16}}>
+                        <Grid item xs={12} md={4} style={{paddingTop: 16}}>
                             <MuiPickersUtilsProvider utils={DateFnsUtils} >
                                 <KeyboardDatePicker
                                     disableToolbar
@@ -161,10 +161,11 @@ export default function TaskIndex() {
                                     KeyboardButtonProps={{
                                         'aria-label': 'change date',
                                     }}
+                                    style={{maxWidth: 230}}
                                 />
                             </MuiPickersUtilsProvider>
-                        </Grid>*/}
-                        <Grid item xs={12} md={6}>
+                        </Grid>
+                        <Grid item xs={12} md={4}>
                             <form className={cls.root} noValidate autoComplete="off">
                                 <TextField
                                     id="standard-basic"

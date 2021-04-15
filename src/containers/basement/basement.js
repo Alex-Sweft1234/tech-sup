@@ -52,13 +52,13 @@ const Footer = ({ history }) => {
                         Контакты
                     </p>
                     <p>
-                        <a href="#" className={clsSt.aHref}>
+                        <a href="tel:+78636300411" className={clsSt.aHref}>
                             <LocalPhoneIcon style={{fontSize: 20}}/>&nbsp;
                             <span className={clsSt.labelInfo}>8(8636)30-04-11</span>
                         </a>
                     </p>
                     <p>
-                        <a href="#" className={clsSt.aHref} target="_blank">
+                        <a href="mailto:techsup@support.ru" className={clsSt.aHref} target="_blank">
                             <MailIcon style={{fontSize: 20}}/>&nbsp;
                             <span className={clsSt.labelInfo}>techsup@support.ru</span>
                         </a>
@@ -75,16 +75,16 @@ const Footer = ({ history }) => {
                         </Link>
                     </p>
                     <p>
-                        <a href="#" className={clsSt.aHref}>
+                        <Link to={ `/tech-sup` } className={clsSt.aHref}>
                             <AssignmentIcon style={{fontSize: 20}}/>&nbsp;
                             <span className={clsSt.labelInfo}>Активные задачи</span>
-                        </a>
+                        </Link>
                     </p>
                     <p>
-                        <a href="#" className={clsSt.aHref}>
+                        <Link to={ `/tech-sup` } className={clsSt.aHref}>
                             <AssignmentTurnedInIcon style={{fontSize: 20}}/>&nbsp;
                             <span className={clsSt.labelInfo}>Архив задач</span>
-                        </a>
+                        </Link>
                     </p>
                 </Grid>
                 <Grid item xs={12} md={3}>
