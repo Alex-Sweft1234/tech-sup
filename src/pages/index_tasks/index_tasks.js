@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {Container, Paper, Grid} from "@material-ui/core";
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Layout from '../../containers/layout/layout.js';
-import TaskList from '../../containers/task/task_list.js';
+import TaskList from '../../containers/task-list/task_list.js';
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';

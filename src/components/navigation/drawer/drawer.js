@@ -23,6 +23,8 @@ import ContactsIcon from '@material-ui/icons/Contacts';
 import InputIcon from '@material-ui/icons/Input';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import BlurOnIcon from '@material-ui/icons/BlurOn';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import InfoIcon from '@material-ui/icons/Info';
 
 const drawerWidth = 270;
 
@@ -49,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
         }),
     },
     menuButton: {
-        marginRight: 36,
+        marginRight: 20,
     },
     hide: {
         display: 'none',
@@ -91,6 +93,16 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         padding: theme.spacing(3),
     },
+    margin: {
+        margin: theme.spacing(1),
+        color: 'white'
+    },
+    rootIcon: {
+        '& > *': {
+            margin: theme.spacing(1),
+        },
+        color: 'white'
+    },
 }));
 
 const menuListTask = [
@@ -114,11 +126,19 @@ const menuListInfo = [
     },
     {
         id: 2,
+        nameItem: 'О нашей компании',
+        pathURL: `/info/`
+    },
+]
+
+const menuListReg = [
+    {
+        id: 1,
         nameItem: 'Вход',
         pathURL: `/auth/`
     },
     {
-        id: 3,
+        id: 2,
         nameItem: 'Регистрация',
         pathURL: `/user-reg/`
     },
@@ -158,22 +178,17 @@ const MiniDrawer = ({ history }) => {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12} sm={8}>
+                    <Grid container spacing={1}>
+                        <Grid item xs={12} sm={11} style={{display: 'flex'}}>
                             <Typography variant="h6" noWrap>
                                 <BlurOnIcon fontSize="large" style={{position: 'relative', bottom: 3}}/>&nbsp;TechSupport
                             </Typography>
+                            {/*<div className={classes.rootIcon}>
+                                <IconButton aria-label="delete" >
+                                    <AccountCircleIcon fontSize="medium" style={{color: 'white'}}/>
+                                </IconButton>
+                            </div>*/}
                         </Grid>
-                        {/*<Grid style={{fontSize: 18, color: 'Salmon'}} item xs={12} sm={2}>
-                            <span>
-                                techsup@support.com
-                            </span>
-                        </Grid>
-                        <Grid style={{fontSize: 18, color: 'Salmon'}} item xs={12} sm={2}>
-                            <span>
-                                8(8636)30-04-11
-                            </span>
-                        </Grid>*/}
                     </Grid>
                 </Toolbar>
             </AppBar>
@@ -212,7 +227,18 @@ const MiniDrawer = ({ history }) => {
                     { menuListInfo.map((item, index) => (
                         <ListItem button key={index} onClick={() => history.push(item.pathURL)}>
                             <ListItemIcon>
-                                {index === 0 ? <ContactsIcon /> : index === 1 ? <InputIcon /> : <PersonAddIcon />}
+                                { index === 0 ? <ContactsIcon /> : <InfoIcon /> }
+                            </ListItemIcon>
+                            <ListItemText primary={item.nameItem} />
+                        </ListItem>
+                    ))}
+                </List>
+                <Divider />
+                <List>
+                    { menuListReg.map((item, index) => (
+                        <ListItem button key={index} onClick={() => history.push(item.pathURL)}>
+                            <ListItemIcon>
+                                { index === 0 ? <InputIcon /> : <PersonAddIcon /> }
                             </ListItemIcon>
                             <ListItemText primary={item.nameItem} />
                         </ListItem>

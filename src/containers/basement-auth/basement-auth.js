@@ -42,14 +42,8 @@ const Footer = ({ history }) => {
         <div className={clsSt.footCls}>
             <Grid container spacing={0} style={{paddingTop: 20, paddingBottom: 12, paddingLeft: 80, textAlign: 'center'}}>
                 <Grid item xs={12} md={2}>
-                    {/*<p>
-                        &ensp;2021 &copy; by TechSupport
-                    </p>*/}
                 </Grid>
                 <Grid item xs={12} md={4}>
-                    {/*<p style={{fontSize: 18}}>
-                        Контакты
-                    </p>*/}
                     <p>
                         <a href="#" className={clsSt.aHref}>
                             <LocalPhoneIcon style={{fontSize: 20}}/>&nbsp;
