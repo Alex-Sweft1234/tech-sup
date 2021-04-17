@@ -98,12 +98,12 @@ const Task = ({ history }) => {
                         <Grid item xs={12} md={9}>
                             <h3 className={cls.hh}>
                                 Ошибка реестра ОМС
-                                &nbsp;
+                                {/*&nbsp;
                                 {
                                     statusTask === true ?
                                         <CheckBoxRoundedIcon className={cls.statusCompleted}/> :
                                         <WatchLaterRoundedIcon className={cls.statusNotCompleted}/>
-                                }
+                                }*/}
                             </h3>
                             <h5 className={cls.hhNumb}>Мои задачи / Задача&nbsp;<span>#1</span></h5>
                         </Grid>
