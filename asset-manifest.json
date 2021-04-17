@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.js": "/tech-sup/static/js/main.94ebd212.chunk.js",
-    "main.js.map": "/tech-sup/static/js/main.94ebd212.chunk.js.map",
+    "main.js": "/tech-sup/static/js/main.9a3aae4b.chunk.js",
+    "main.js.map": "/tech-sup/static/js/main.9a3aae4b.chunk.js.map",
     "runtime-main.js": "/tech-sup/static/js/runtime-main.e04ea8d2.js",
     "runtime-main.js.map": "/tech-sup/static/js/runtime-main.e04ea8d2.js.map",
-    "static/js/2.87ff21b4.chunk.js": "/tech-sup/static/js/2.87ff21b4.chunk.js",
-    "static/js/2.87ff21b4.chunk.js.map": "/tech-sup/static/js/2.87ff21b4.chunk.js.map",
+    "static/js/2.cdfdf015.chunk.js": "/tech-sup/static/js/2.cdfdf015.chunk.js",
+    "static/js/2.cdfdf015.chunk.js.map": "/tech-sup/static/js/2.cdfdf015.chunk.js.map",
     "index.html": "/tech-sup/index.html",
-    "static/js/2.87ff21b4.chunk.js.LICENSE.txt": "/tech-sup/static/js/2.87ff21b4.chunk.js.LICENSE.txt",
+    "static/js/2.cdfdf015.chunk.js.LICENSE.txt": "/tech-sup/static/js/2.cdfdf015.chunk.js.LICENSE.txt",
     "static/media/info-techsup.a86069af.jpg": "/tech-sup/static/media/info-techsup.a86069af.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.e04ea8d2.js",
-    "static/js/2.87ff21b4.chunk.js",
-    "static/js/main.94ebd212.chunk.js"
+    "static/js/2.cdfdf015.chunk.js",
+    "static/js/main.9a3aae4b.chunk.js"
   ]
 }
