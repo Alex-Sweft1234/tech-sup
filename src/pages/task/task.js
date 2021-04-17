@@ -119,7 +119,15 @@ const Task = ({ history }) => {
                             </Button>
                             {
                                     statusTask === true ?
-                                        null :
+                                        <Button
+                                            variant="contained"
+                                            color="primary"
+                                            size="small"
+                                            className={cls.button}
+                                            //startIcon={<SaveIcon />}
+                                        >
+                                            Переоткрыть
+                                        </Button> :
                                         <Button
                                             variant="contained"
                                             color="primary"
@@ -156,7 +164,7 @@ const Task = ({ history }) => {
                                             &nbsp;11:30 28/03/2021
                                         </p>
                                         { 
-                                            statusTask === true ? null :
+                                            statusTask === false ? null :
                                             <p>
                                                 <span style={{opacity: .7}}>Дата решения:</span>
                                                 &nbsp;09:47 29/03/2021

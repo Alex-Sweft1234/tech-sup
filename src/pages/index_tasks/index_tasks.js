@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Container, Paper, Grid} from "@material-ui/core";
+import { withRouter, Link } from 'react-router-dom';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Layout from '../../containers/layout/layout.js';
 import TaskList from '../../containers/task-list/task_list.js';
@@ -9,6 +10,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 import ListTasks from '../../content/tasks.json';
 import DateFnsUtils from '@date-io/date-fns';
 import {
@@ -53,7 +55,10 @@ const useStyles = makeStyles((theme) => ({
         opacity: .9,
         paddingLeft: 10,
         color: 'DarkSlateGray'
-    }
+    },
+    margin: {
+        margin: theme.spacing(1),
+    },
 }))
 
 const typeTask = [
@@ -134,7 +139,7 @@ export default function TaskIndex() {
                     </Grid>
                     <hr/>
                     <Grid container spacing={1} style={{marginBottom: 10, textAlign: 'center'}}>
-                        <Grid item xs={12} md={4}>
+                        <Grid item xs={12} md={3}>
                             <FormControl className={cls.formControl}>
                                 <InputLabel id="demo-controlled-open-select-label">Виды задач</InputLabel>
                                 <Select
@@ -149,7 +154,7 @@ export default function TaskIndex() {
                                 </Select>
                             </FormControl>
                         </Grid>
-                        <Grid item xs={12} md={4} style={{paddingTop: 16}}>
+                        <Grid item xs={12} md={3} style={{paddingTop: 12}}>
                             <MuiPickersUtilsProvider utils={DateFnsUtils} >
                                 <KeyboardDatePicker
                                     disableToolbar
@@ -166,7 +171,7 @@ export default function TaskIndex() {
                                 />
                             </MuiPickersUtilsProvider>
                         </Grid>
-                        <Grid item xs={12} md={4}>
+                        <Grid item xs={12} md={3}>
                             <form className={cls.root} noValidate autoComplete="off">
                                 <TextField
                                     id="standard-basic"
@@ -174,6 +179,11 @@ export default function TaskIndex() {
                                     value={term} onChange={handleChangeName}
                                 />
                             </form>
+                        </Grid>
+                        <Grid item xs={12} md={3} style={{paddingTop: 20}}>
+                            <Button variant="contained" size="small" color="primary" className={cls.margin}>
+                                Сбросить
+                            </Button>
                         </Grid>
                     </Grid>
                 </Paper>
