@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import Drawer from '@material-ui/core/Drawer';
 import Grid from '@material-ui/core/Grid';
 import AppBar from '@material-ui/core/AppBar';
@@ -23,7 +23,6 @@ import ContactsIcon from '@material-ui/icons/Contacts';
 import InputIcon from '@material-ui/icons/Input';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import BlurOnIcon from '@material-ui/icons/BlurOn';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import InfoIcon from '@material-ui/icons/Info';
 
 const drawerWidth = 270;
@@ -103,6 +102,15 @@ const useStyles = makeStyles((theme) => ({
         },
         color: 'white'
     },
+    lnk: {
+        color: 'white',
+        cursor: 'pointer',
+        textDecoration: 'none',
+        "&:hover": {
+            color: 'white',
+            textDecoration: 'none',
+        },
+    }
 }));
 
 const menuListTask = [
@@ -179,15 +187,12 @@ const MiniDrawer = ({ history }) => {
                         <MenuIcon />
                     </IconButton>
                     <Grid container spacing={1}>
-                        <Grid item xs={12} sm={11} style={{display: 'flex'}}>
+                        <Grid item xs={12} sm={12}>
                             <Typography variant="h6" noWrap>
-                                <BlurOnIcon fontSize="large" style={{position: 'relative', bottom: 3}}/>&nbsp;TechSupport
+                                <Link to={ `/tech-sup` } className={classes.lnk}>
+                                    <BlurOnIcon fontSize="large" style={{position: 'relative', bottom: 3}}/>&nbsp;TechSupport
+                                </Link>
                             </Typography>
-                            {/*<div className={classes.rootIcon}>
-                                <IconButton aria-label="delete" >
-                                    <AccountCircleIcon fontSize="medium" style={{color: 'white'}}/>
-                                </IconButton>
-                            </div>*/}
                         </Grid>
                     </Grid>
                 </Toolbar>

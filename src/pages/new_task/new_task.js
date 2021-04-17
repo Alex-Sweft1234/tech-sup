@@ -77,14 +77,6 @@ export default function NewTask() {
     const cls = useStyles();
 
     const [status, setStatus] = useState(0);
-    const [rows, setRows] =  useState([]);
-
-    /*const rowFiltered = () => {
-        if (status === 0){
-            return data
-        }
-        return data.filter(e => e.status.toString()[0] === status.toString()[0]);
-    */
 
     const handleChange = (event) => {
         setStatus(event.target.value);
@@ -92,7 +84,6 @@ export default function NewTask() {
 
     useEffect(() => {
         document.title = `TechSup | Новая задача`;
-        //setRows(rowFiltered());
     }, [status]);
 
     return(

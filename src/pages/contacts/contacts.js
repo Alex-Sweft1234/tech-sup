@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Container, Paper, Grid} from "@material-ui/core";
+import { withRouter, Link } from 'react-router-dom';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Layout from '../../containers/layout/layout.js';
@@ -66,6 +67,15 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(1),
         marginTop: 20
     },
+    lnk: {
+        color: 'white',
+        cursor: 'pointer',
+        textDecoration: 'none',
+        "&:hover": {
+            color: 'white',
+            textDecoration: 'none',
+        },
+    },
 }))
 
 const loadScript = (src, onLoad) => {
@@ -86,11 +96,11 @@ const init = () => {
         balloonContent: 'ООО "TechSupport"<br />Телефон: 8 (8636) 30-04-11'
     }, {
         preset: 'islands#icon',
-        iconColor: '#0095b6'
+        iconColor: '#FF0000'
     }))
 };
 
-export default function Contacts() {
+const Contacts = ({ history }) => {
     
     const cls = useStyles();
 
@@ -146,7 +156,7 @@ export default function Contacts() {
                                 size="small"
                                 className={cls.button}
                             >
-                                К задачам
+                                <Link to={ `/tech-sup` } className={cls.lnk}>К задачам</Link>
                             </Button>
                         </div>
                 </Paper>
@@ -154,3 +164,5 @@ export default function Contacts() {
         </Layout>
     )
 }
+
+export default withRouter(Contacts);

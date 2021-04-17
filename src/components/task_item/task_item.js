@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter, Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
@@ -58,10 +59,19 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: 3,
         position: 'relative',
         bottom: 3,
-    }
+    },
+    lnk: {
+        color: 'white',
+        cursor: 'pointer',
+        textDecoration: 'none',
+        "&:hover": {
+            color: 'white',
+            textDecoration: 'none',
+        },
+    },
 }));
 
-export default function TaskItem(props) {
+const TaskItem = ({ history, status, id, taskname, date, descript }) => {
     const cls = useStyles();
     const [expanded, setExpanded] = React.useState(false);
 
@@ -80,24 +90,24 @@ export default function TaskItem(props) {
                     <Grid container spacing={2}>
                         <Grid item xs={12} md={7}>
                             <Typography className={cls.heading}>
-                                {props.status === 2 ? <CheckBoxRoundedIcon className={cls.statusCompleted}/> : <WatchLaterRoundedIcon className={cls.statusNotCompleted}/>}
+                                {status === 2 ? <CheckBoxRoundedIcon className={cls.statusCompleted}/> : <WatchLaterRoundedIcon className={cls.statusNotCompleted}/>}
                                 &emsp;
-                                <span className={cls.numberItem}>#{props.id}</span>&nbsp;{props.taskname}
+                                <span className={cls.numberItem}>#{id}</span>&nbsp;{taskname}
                             </Typography>
                         </Grid>
                         <Grid item xs={12} md={4}>
-                            <Typography className={cls.secondaryHeading}>{props.date}</Typography>
+                            <Typography className={cls.secondaryHeading}>{date}</Typography>
                         </Grid>
                     </Grid>
                 </AccordionSummary>
                 <AccordionDetails>
                     <Grid container spacing={2}>
                         <Grid item xs={12} md={10} style={{padding: 15}}>
-                            <Typography className={cls.accordSumText}>{props.descript}</Typography>
+                            <Typography className={cls.accordSumText}>{descript}</Typography>
                         </Grid>
                         <Grid item xs={12} md={2}>
                             <Button variant="contained" size="small" color="primary" className={cls.margin}>
-                                Подробнее
+                                <Link to={ `/task` } className={cls.lnk}>Подробнее</Link>
                             </Button>
                         </Grid>
                     </Grid>
@@ -106,3 +116,4 @@ export default function TaskItem(props) {
         </div>
     )
 }
+export default withRouter(TaskItem);

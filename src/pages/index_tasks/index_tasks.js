@@ -105,7 +105,8 @@ export default function TaskIndex() {
         setTerm(event.target.value);
     };
 
-    const [selectedDate, setSelectedDate] = useState(new Date('2021-04-02T21:11:54'));
+    //const [selectedDate, setSelectedDate] = useState(new Date('2021-04-16T21:11:54'));
+    const [selectedDate, setSelectedDate] = useState(new Date());
 
     const handleDateChange = (date) => {
         setSelectedDate(date);

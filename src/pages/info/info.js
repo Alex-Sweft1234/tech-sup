@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Container, Paper, Grid} from "@material-ui/core";
+import { withRouter, Link } from 'react-router-dom';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Layout from '../../containers/layout/layout.js';
@@ -36,17 +37,27 @@ const useStyles = makeStyles((theme) => ({
     },
     button: {
         margin: theme.spacing(1),
+        marginLeft: theme.spacing(2)
+    },
+    lnk: {
+        color: 'white',
+        cursor: 'pointer',
+        textDecoration: 'none',
+        "&:hover": {
+            color: 'white',
+            textDecoration: 'none',
+        },
     },
 }))
 
 
 
-export default function Info() {
+const Info = ({ history }) => {
     
     const cls = useStyles();
 
     useEffect(() => {
-        document.title = `TechSup | Партнёры`;
+        document.title = `TechSup | О нас`;
     }, []);
 
     return(
@@ -72,7 +83,7 @@ export default function Info() {
                             size="small"
                             className={cls.button}
                         >
-                            К задачам
+                            <Link to={ `/tech-sup` } className={cls.lnk}>К задачам</Link>
                         </Button>
                     </div>
                 </Paper>
@@ -80,3 +91,5 @@ export default function Info() {
         </Layout>
     )
 }
+
+export default withRouter(Info);

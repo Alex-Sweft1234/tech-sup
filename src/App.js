@@ -7,6 +7,7 @@ import Partners from './pages/partners/partners.js';
 import Info from './pages/info/info.js';
 import Auth from './pages/auth/auth.js';
 import UserReg from './pages/user-reg/user-reg.js';
+import Task from './pages/task/task.js';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 export default class App extends Component {
@@ -24,6 +25,7 @@ export default class App extends Component {
             <Route path="/info/" component = {Info} />
             <Route path="/auth/" component = {Auth} />
             <Route path="/user-reg/" component = {UserReg} />
+            <Route path="/task/" component = {Task} />
           </Router>
       </div>
       
