@@ -110,7 +110,6 @@ const Task = ({ history }) => {
                                 color="primary"
                                 size="small"
                                 className={cls.button}
-                                //startIcon={<SaveIcon />}
                             >
                                 <Link to={ `/tech-sup` } className={cls.lnk}>Закрыть</Link>
                             </Button>
@@ -121,7 +120,6 @@ const Task = ({ history }) => {
                                             color="primary"
                                             size="small"
                                             className={cls.button}
-                                            //startIcon={<SaveIcon />}
                                         >
                                             Переоткрыть
                                         </Button> :

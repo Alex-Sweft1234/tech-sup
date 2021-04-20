@@ -14,7 +14,6 @@ import Button from '@material-ui/core/Button';
 import DateFnsUtils from '@date-io/date-fns';
 import {
     MuiPickersUtilsProvider,
-    KeyboardTimePicker,
     KeyboardDatePicker,
 } from '@material-ui/pickers';
 import 'date-fns';
@@ -141,6 +140,12 @@ export default function TaskIndex() {
         setSelectedDate(date);
     };
 
+    const onDischarge = () => {
+        setStatus(0);
+        setTerm('');
+        setSelectedDate(new Date());
+    }
+
     useEffect(() => {
         document.title = `TechSup | Мои задачи`;
         setRows(rowFiltered());
@@ -202,7 +207,7 @@ export default function TaskIndex() {
                             </form>
                         </Grid>
                         <Grid item xs={12} md={3} style={{paddingTop: 20}}>
-                            <Button variant="contained" size="small" color="primary" className={cls.margin}>
+                            <Button variant="contained" size="small" color="primary" className={cls.margin} onClick={onDischarge}>
                                 Сбросить
                             </Button>
                         </Grid>
