@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React, { useEffect } from 'react';
 import {Container, Paper, Grid} from "@material-ui/core";
 import { withRouter, Link } from 'react-router-dom';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Layout from '../../containers/layout/layout.js';
 import Photo from '../../img/info-techsup.jpg';

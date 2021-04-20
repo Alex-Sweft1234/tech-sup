@@ -2,20 +2,20 @@ import React from 'react';
 import TaskItem from '../../components/task_item/task_item.js';
 
 export default function TaskList (props) {
+
     return(
         <div>
             {
-                props.data.map((e, index) => {
-                    return  <div style={{marginBottom: 3}}>
-                                <TaskItem 
-                                    key={index}
-                                    id={e.id}
-                                    taskname={e.taskname}
-                                    date={e.date}
-                                    descript={e.descript}
-                                    status={e.status}
-                                />
-                            </div>
+                props.data.map(e => {
+                    return  <TaskItem 
+                                key={e.key}
+                                id={e.id}
+                                taskname={e.subject}
+                                date={e.dateStart}
+                                descript={e.description}
+                                status={e.status}
+                            />
+
                 })
             }
         </div>

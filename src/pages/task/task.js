@@ -1,13 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import {Container, Paper, Grid} from "@material-ui/core";
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Layout from '../../containers/layout/layout.js';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import CheckBoxRoundedIcon from '@material-ui/icons/CheckBoxRounded';
-import WatchLaterRoundedIcon from '@material-ui/icons/WatchLaterRounded';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -36,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
     },
     hhTask: {
         opacity: .8,
-        //paddingBottom: 10,
         color: 'DarkSlateGray'
     },
     valueTask: {
@@ -82,9 +79,9 @@ const Task = ({ history }) => {
 
     const [statusTask, setStatusTask] = useState(false);
 
-    /*const handleChangeTask = (event) => {
-        setStatusTask(event.target.value);
-    };*/
+    const handleChangeTask = () => {
+        setStatusTask(!false);
+    };
 
     useEffect(() => {
         document.title = `TechSup | Задача #1`;
@@ -133,7 +130,7 @@ const Task = ({ history }) => {
                                             color="primary"
                                             size="small"
                                             className={cls.button}
-                                            //startIcon={<SaveIcon />}
+                                            onClick={handleChangeTask}
                                         >
                                             Завершить
                                         </Button>

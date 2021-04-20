@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
+import Axios from '../../axios/axios.js';
 import {Container, Paper, Grid} from "@material-ui/core";
-import { withRouter, Link } from 'react-router-dom';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Layout from '../../containers/layout/layout.js';
 import TaskList from '../../containers/task-list/task_list.js';
 import TextField from '@material-ui/core/TextField';
@@ -11,7 +11,6 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import ListTasks from '../../content/tasks.json';
 import DateFnsUtils from '@date-io/date-fns';
 import {
     MuiPickersUtilsProvider,
@@ -79,15 +78,42 @@ const typeTask = [
 export default function TaskIndex() {
 
     const cls = useStyles();
-    const data = ListTasks;
 
+    //инициализация state
     const [status, setStatus] = useState(0);
     const [term, setTerm] = useState('');
     const [rows, setRows] =  useState([]);
+    const [selectedDate, setSelectedDate] = useState(new Date());
+    const [dataTasks, setDataTasks] = useState([]);
 
-    const filterName = data.filter(e => e.taskname.toLowerCase().indexOf(term.toLowerCase()) > -1);
-    const filterStatus = data.filter(e => e.status.toString()[0] === status.toString()[0]);
+    //загрузка данных с сервера
+    const listTasks = async () => {
+        try {
+            const response = await Axios.get('/tasks.json');
+            let dataset = [];
+            Object.entries(response.data).forEach(([key, value], index) => {
+                dataset.push({
+                    key,
+                    id: index + 1,
+                    subject: value.subject,
+                    dateStart: value.dateStart,
+                    description: value.description,
+                    status: value.status,
+                    priority: value.priority
+                })
+            })
+            setDataTasks(dataset);
+            //return console.log(dataset);
+        } catch(e) {
+            console.log(e)
+        }
+    }
 
+    //условия фильтров
+    const filterName = dataTasks.filter(e => e.subject.toLowerCase().indexOf(term.toLowerCase()) > -1);
+    const filterStatus = dataTasks.filter(e => e.status.toString()[0] === status.toString()[0]);
+
+    //фильтры
     const rowFiltered = () => {
         if (status === 0){
             return filterName
@@ -99,9 +125,10 @@ export default function TaskIndex() {
         if (term.lenght === 0){
             return filterStatus
         }
-        return rowFiltered().filter(e => e.taskname.toLowerCase().indexOf(term.toLowerCase()) > -1);
+        return rowFiltered().filter(e => e.subject.toLowerCase().indexOf(term.toLowerCase()) > -1);
     }
 
+    //получение данных из объектов формы
     const handleChange = (event) => {
         setStatus(event.target.value);
     };
@@ -110,18 +137,16 @@ export default function TaskIndex() {
         setTerm(event.target.value);
     };
 
-    //const [selectedDate, setSelectedDate] = useState(new Date('2021-04-16T21:11:54'));
-    const [selectedDate, setSelectedDate] = useState(new Date());
-
     const handleDateChange = (date) => {
         setSelectedDate(date);
     };
 
-    useEffect(()=>{
+    useEffect(() => {
         document.title = `TechSup | Мои задачи`;
         setRows(rowFiltered());
-        setRows(rowFilteredName())
-    }, [status, term])
+        setRows(rowFilteredName());
+        listTasks();
+    }, [status, term, dataTasks])
 
     return(
         <Layout>
@@ -133,7 +158,7 @@ export default function TaskIndex() {
                         </Grid>
                         <Grid item xs={12} md={3}>
                             <Typography className={cls.valueTask}>
-                                Всего задач: {data.length}, выполненных: {data.filter(e => e.status === 2).length}
+                                Всего задач: {dataTasks.length}, выполненных: {dataTasks.filter(e => e.status === 2).length}
                             </Typography>
                         </Grid>
                     </Grid>
@@ -141,10 +166,8 @@ export default function TaskIndex() {
                     <Grid container spacing={1} style={{marginBottom: 10, textAlign: 'center'}}>
                         <Grid item xs={12} md={3}>
                             <FormControl className={cls.formControl}>
-                                <InputLabel id="demo-controlled-open-select-label">Виды задач</InputLabel>
+                                <InputLabel>Виды задач</InputLabel>
                                 <Select
-                                    labelId="demo-controlled-open-select-label"
-                                    id="demo-controlled-open-select"
                                     value={status}
                                     onChange={handleChange}
                                 >
@@ -160,7 +183,6 @@ export default function TaskIndex() {
                                     disableToolbar
                                     variant="inline"
                                     format="dd/MM/yyyy"
-                                    id="date-picker-inline"
                                     label="По дате"
                                     value={selectedDate}
                                     onChange={handleDateChange}
@@ -174,7 +196,6 @@ export default function TaskIndex() {
                         <Grid item xs={12} md={3}>
                             <form className={cls.root} noValidate autoComplete="off">
                                 <TextField
-                                    id="standard-basic"
                                     label="Поиск по названию"
                                     value={term} onChange={handleChangeName}
                                 />
@@ -188,7 +209,7 @@ export default function TaskIndex() {
                     </Grid>
                 </Paper>
                 <div style={{marginLeft: 40}}>
-                    <TaskList 
+                    <TaskList
                         data={rows}
                     />
                 </div>

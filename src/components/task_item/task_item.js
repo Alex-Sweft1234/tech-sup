@@ -14,6 +14,7 @@ import WatchLaterRoundedIcon from '@material-ui/icons/WatchLaterRounded';
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
+        marginBottom: 5,
     },
     heading: {
         fontSize: theme.typography.pxToRem(17),

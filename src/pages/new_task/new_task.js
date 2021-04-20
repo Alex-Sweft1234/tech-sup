@@ -1,4 +1,6 @@
 import React, {useState, useEffect} from 'react';
+import Axios from '../../axios/axios.js';
+import { withRouter, Link } from 'react-router-dom';
 import {Container, Paper, Grid} from "@material-ui/core";
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -11,6 +13,13 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
 import LensSharpIcon from '@material-ui/icons/LensSharp';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+    MuiPickersUtilsProvider,
+    KeyboardTimePicker,
+    KeyboardDatePicker,
+} from '@material-ui/pickers';
+import 'date-fns';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -40,11 +49,20 @@ const useStyles = makeStyles((theme) => ({
     },
     formControl: {
         margin: theme.spacing(1),
-        minWidth: 230,
+        minWidth: 220,
         textAlign: 'left'
     },
     button: {
         margin: theme.spacing(1),
+    },
+    lnk: {
+        color: 'white',
+        cursor: 'pointer',
+        textDecoration: 'none',
+        "&:hover": {
+            color: 'white',
+            textDecoration: 'none',
+        },
     },
 }))
 
@@ -71,20 +89,62 @@ const priorityType = [
     }
 ]
 
-
-export default function NewTask() {
+const NewTask = ({ history }) => {
     
     const cls = useStyles();
 
     const [status, setStatus] = useState(0);
 
-    const handleChange = (event) => {
-        setStatus(event.target.value);
+    //Смена приоретета задачи
+    const [priority, setPriority] = useState(0);
+    const handleChangePriority = (event) => {
+        setPriority(event.target.value);
     };
+
+    //Дата создания задачи
+    const [selectedDate, setSelectedDate] = useState(new Date());
+    const handleDateChange = (date) => {
+        setSelectedDate(date);
+    };
+
+    //Описание задачи
+    const [description, setDescription] = useState('');
+    const handleChangeDescription = (event) => {
+        setDescription(event.target.value);
+    };
+
+    //Тема задачи
+    const [subject, setSubject] = useState('');
+    const handleChangeSubject = (event) => {
+        setSubject(event.target.value);
+    };
+
+    //Создание новой задачи
+    const SubmitHandler = (event) => {
+        event.preventDefault();
+    }
+
+    const finishTaskHandler = async event => {
+        event.preventDefault()
+
+        const taskItem = {
+            status: 1,
+            priority: priority,
+            dateStart: selectedDate,
+            subject: subject,
+            description: description,
+        }
+
+        try {
+            Axios.post('/tasks.json', taskItem)
+        } catch (e) {
+            console.log(e)
+        }
+    }
 
     useEffect(() => {
         document.title = `TechSup | Новая задача`;
-    }, [status]);
+    }, [status, priority, selectedDate, subject, description]);
 
     return(
         <Layout>
@@ -99,7 +159,7 @@ export default function NewTask() {
                         </Grid>
                     </Grid>
                     <hr/>
-                    <form className={cls.root} noValidate autoComplete="off">
+                    <form className={cls.root} onSubmit={SubmitHandler}>
                         <Grid container spacing={2}>
                             <Grid item xs={12} md={9} style={{paddingTop: 16}}>
                                 <FormControl className={cls.formControl}>
@@ -107,8 +167,8 @@ export default function NewTask() {
                                     <Select
                                         labelId="demo-controlled-open-select-label"
                                         id="demo-controlled-open-select"
-                                        value={status}
-                                        onChange={handleChange}
+                                        value={priority}
+                                        onChange={handleChangePriority}
                                     >
                                         {
                                             priorityType.map(e => <MenuItem value={e.id} key={e.id}>
@@ -121,19 +181,43 @@ export default function NewTask() {
                                     </Select>
                                 </FormControl>
                             </Grid>
+                            <Grid item xs={12} md={3} style={{paddingTop: 12}}>
+                                <MuiPickersUtilsProvider utils={DateFnsUtils} >
+                                    <KeyboardDatePicker
+                                        disableToolbar
+                                        disabled
+                                        variant="inline"
+                                        format="dd/MM/yyyy"
+                                        id="date-picker-inline"
+                                        label="Дата создания"
+                                        value={selectedDate}
+                                        onChange={handleDateChange}
+                                        KeyboardButtonProps={{
+                                            'aria-label': 'change date',
+                                        }}
+                                        style={{maxWidth: 220, marginLeft: 7}}
+                                    />
+                                </MuiPickersUtilsProvider>
+                            </Grid>
                         </Grid>
                         <div style={{marginBottom: 20}}>
-                            <TextField id="outlined-basic" label="Тема задачи" variant="outlined" fullWidth/>
+                            <TextField
+                                id="outlined-basic"
+                                label="Тема задачи"
+                                variant="outlined"
+                                fullWidth
+                                onChange={handleChangeSubject}
+                            />
                         </div>
-                        <div >
+                        <div>
                             <TextField
                                 id="outlined-multiline-static"
                                 label="Описание задачи"
                                 fullWidth
                                 multiline
                                 rows={7}
-                                //defaultValue="Тестовый текст"
                                 variant="outlined"
+                                onChange={handleChangeDescription}
                             />
                         </div>
                         <div>
@@ -143,8 +227,9 @@ export default function NewTask() {
                                 size="small"
                                 className={cls.button}
                                 startIcon={<SaveIcon />}
+                                onClick={finishTaskHandler}
                             >
-                                Сохранить
+                                <Link to={ `/tech-sup` } className={cls.lnk}>Сохранить</Link>
                             </Button>
                         </div>
                     </form>
@@ -153,3 +238,5 @@ export default function NewTask() {
         </Layout>
     )
 }
+
+export default withRouter(NewTask);
