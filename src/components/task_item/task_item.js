@@ -72,13 +72,14 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const TaskItem = ({ history, status, id, taskname, date, descript }) => {
+const TaskItem = ({ history, keytask, status, id, taskname, date, descript }) => {
     const cls = useStyles();
     const [expanded, setExpanded] = React.useState(false);
 
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
     };
+    
     return (
         <div className={cls.root}>
             <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
@@ -91,7 +92,7 @@ const TaskItem = ({ history, status, id, taskname, date, descript }) => {
                     <Grid container spacing={2}>
                         <Grid item xs={12} md={7}>
                             <Typography className={cls.heading}>
-                                {status === 2 ? <CheckBoxRoundedIcon className={cls.statusCompleted}/> : <WatchLaterRoundedIcon className={cls.statusNotCompleted}/>}
+                                {status === true ? <CheckBoxRoundedIcon className={cls.statusCompleted}/> : <WatchLaterRoundedIcon className={cls.statusNotCompleted}/>}
                                 &emsp;
                                 <span className={cls.numberItem}>#{id}</span>&nbsp;{taskname}
                             </Typography>
@@ -108,7 +109,7 @@ const TaskItem = ({ history, status, id, taskname, date, descript }) => {
                         </Grid>
                         <Grid item xs={12} md={2}>
                             <Button variant="contained" size="small" color="primary" className={cls.margin}>
-                                <Link to={ `/task` } className={cls.lnk}>Подробнее</Link>
+                                <Link to={ `/task/` +  keytask} className={cls.lnk}>Подробнее </Link>
                             </Button>
                         </Grid>
                     </Grid>

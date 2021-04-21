@@ -125,9 +125,12 @@ const NewTask = ({ history }) => {
 
     const finishTaskHandler = async event => {
         event.preventDefault()
-
+        
+        const response = await Axios.get('/tasks.json');
+        
         const taskItem = {
-            status: 1,
+            id: Object.values(response).length,
+            status: false,
             priority: priority,
             dateStart: selectedDate,
             subject: subject,

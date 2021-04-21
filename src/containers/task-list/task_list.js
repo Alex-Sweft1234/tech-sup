@@ -8,7 +8,8 @@ export default function TaskList (props) {
             {
                 props.data.map(e => {
                     return  <TaskItem 
-                                key={e.key}
+                                key={e.keytask}
+                                keytask={e.keytask}
                                 id={e.id}
                                 taskname={e.subject}
                                 date={e.dateStart}

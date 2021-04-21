@@ -109,10 +109,10 @@ export default function TaskIndex() {
         try {
             const response = await Axios.get('/tasks.json');
             let dataset = [];
-            Object.entries(response.data).forEach(([key, value], index) => {
+            Object.entries(response.data).forEach(([key, value]) => {
                 dataset.push({
-                    key,
-                    id: index + 1,
+                    keytask: key,
+                    id: value.id,
                     subject: value.subject,
                     dateStart: value.dateStart,
                     description: value.description,
@@ -120,6 +120,7 @@ export default function TaskIndex() {
                     priority: value.priority
                 })
             })
+            //return console.log(dataset)
             setDataTasks(dataset);
             setLoader(false)
         } catch(e) {
@@ -182,7 +183,7 @@ export default function TaskIndex() {
                         </Grid>
                         <Grid item xs={12} md={3}>
                             <Typography className={cls.valueTask}>
-                                Всего задач: {dataTasks.length}, выполненных: {dataTasks.filter(e => e.status === 2).length}
+                                Всего задач: {dataTasks.length}, выполненных: {dataTasks.filter(e => e.status === true).length}
                             </Typography>
                         </Grid>
                     </Grid>

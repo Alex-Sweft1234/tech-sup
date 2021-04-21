@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useParams} from 'react';
+import Axios from '../../axios/axios.js';
 import { withRouter, Link } from 'react-router-dom';
 import {Container, Paper, Grid} from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
@@ -72,18 +73,42 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-const Task = ({ history }) => {
+const Task = ({ history, match}) => {
+
+    const [dataTask, setDataTask] = useState([]);
+    const [statusTask, setStatusTask] = useState(false);
+
+    const downloadTask = async () => {
+        try {
+            const response = await Axios.get(`/tasks/${match.params.id}.json`)
+            let dataset = response.data;
+            setDataTask(dataset)
+            setStatusTask(dataset.status)
+        } catch(e) {
+            console.log(e)
+        }
+    }
     
     const cls = useStyles();
 
-    const [statusTask, setStatusTask] = useState(false);
 
-    const handleChangeTask = () => {
-        setStatusTask(!false);
+    const handleEndTask = async () => {
+        setStatusTask(true);
+        //доделать завершение задачи
+        try {
+            ///////////////////////////
+        } catch (e) {
+            console.log(e)
+        }
     };
+
+    const handleКediscoverTask = () => {
+        setStatusTask(false);
+    }
 
     useEffect(() => {
         document.title = `TechSup | Задача #1`;
+        downloadTask();
     }, [statusTask]);
 
     return(
@@ -93,15 +118,9 @@ const Task = ({ history }) => {
                     <Grid container spacing={2} style={{paddingTop: 20}}>
                         <Grid item xs={12} md={9}>
                             <h3 className={cls.hh}>
-                                Ошибка реестра ОМС
-                                {/*&nbsp;
-                                {
-                                    statusTask === true ?
-                                        <CheckBoxRoundedIcon className={cls.statusCompleted}/> :
-                                        <WatchLaterRoundedIcon className={cls.statusNotCompleted}/>
-                                }*/}
+                                { dataTask.subject }
                             </h3>
-                            <h5 className={cls.hhNumb}>Мои задачи / Задача&nbsp;<span>#1</span></h5>
+                            <h5 className={cls.hhNumb}>Мои задачи / Задача&nbsp;<span>#{dataTask.id}</span></h5>
                         </Grid>
                         <Grid item xs={12} md={3} style={{paddingLeft: 40, position: 'relative', bottom: 7}}>
                             <Button
@@ -119,6 +138,7 @@ const Task = ({ history }) => {
                                             color="primary"
                                             size="small"
                                             className={cls.button}
+                                            onClick={handleКediscoverTask}
                                         >
                                             Переоткрыть
                                         </Button> :
@@ -127,7 +147,7 @@ const Task = ({ history }) => {
                                             color="primary"
                                             size="small"
                                             className={cls.button}
-                                            onClick={handleChangeTask}
+                                            onClick={handleEndTask}
                                         >
                                             Завершить
                                         </Button>
@@ -141,28 +161,35 @@ const Task = ({ history }) => {
                             <Grid container spacing={2} style={{marginTop: 20}}>
                                 <Grid item xs={12} md={6}>
                                     <Typography>
-                                        <p>
+                                        <div>
                                             <span style={{opacity: .7}}>Приоритет:</span>
-                                            &nbsp;Обычный
-                                        </p>
-                                        <p>
+                                            &nbsp;{ 
+                                                dataTask.priority === 0 ? 'Низкий' :
+                                                dataTask.priority === 1 ? 'Обычный' :
+                                                dataTask.priority === 2 ? 'Средний' :
+                                                dataTask.priority === 3 ? 'Высокий' :
+                                                'Критический'
+                                            }
+                                        </div>
+                                        <div>
                                             <span style={{opacity: .7}}>Статус:</span>
                                             &nbsp;{ statusTask === true ? 'Завершена' : 'В работе' }
-                                        </p>
+                                        </div>
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={12} md={6}>
                                     <Typography>
-                                        <p>
+                                        <div>
                                             <span style={{opacity: .7}}>Дата создания:</span>
-                                            &nbsp;11:30 28/03/2021
-                                        </p>
+                                            &nbsp;{ dataTask.dateStart }
+                                        </div>
                                         { 
-                                            statusTask === false ? null :
-                                            <p>
+                                            statusTask === true ?
+                                            <div>
                                                 <span style={{opacity: .7}}>Дата решения:</span>
-                                                &nbsp;09:47 29/03/2021
-                                            </p>
+                                                &nbsp;{ dataTask.dateStop }
+                                            </div> :
+                                            null
                                         }
                                     </Typography>
                                 </Grid>
@@ -172,9 +199,7 @@ const Task = ({ history }) => {
                         <div style={{marginBottom: 30}}>
                             <h4 className={cls.hhTask}>Описание</h4>
                             <Typography style={{marginBottom: 25}}>
-                                При загрузке ответа от фонда в ошибках имеется большое количество стат. карт со следующей ошибкой: 
-                                Код КСЛП {4} отсутствует в перечне действующих кодов в классификаторе КСЛП, файл выгрузки прилагаю к задаче. 
-                                Посодействуйте срочно в решении данной ошибки.
+                                { dataTask.description }
                             </Typography>
                             <hr/>
                         </div>
@@ -196,17 +221,12 @@ const Task = ({ history }) => {
                             </Grid>
                         <div>
                             <TextField
-                                id="outlined-multiline-static"
                                 label="Описание решения"
                                 fullWidth
                                 multiline
                                 rows={7}
-                                //defaultValue="Тестовый текст"
                                 variant="outlined"
                             />
-                        </div>
-                        <div>
-                            
                         </div>
                     </form>
                 </Paper>

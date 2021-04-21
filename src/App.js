@@ -25,7 +25,7 @@ export default class App extends Component {
             <Route path="/info/" component = {Info} />
             <Route path="/auth/" component = {Auth} />
             <Route path="/user-reg/" component = {UserReg} />
-            <Route path="/task/" component = {Task} />
+            <Route path="/task/:id" component = {Task} />
           </Router>
       </div>
       
