@@ -6,7 +6,6 @@ import LayoutAuth from '../../containers/layout-auth/layout-auth.js';
 const useStyles = makeStyles((theme) => ({
     paperStyle: {
         padding: 15,
-        marginLeft: 40,
         minHeight: '68vh',
     },
     containStyle: {

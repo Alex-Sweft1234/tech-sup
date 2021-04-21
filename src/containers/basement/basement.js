@@ -45,7 +45,7 @@ const Footer = ({ history }) => {
     const clsSt = cls();
 
     return(
-        <div className={clsSt.footCls} style={{paddingLeft: 80, paddingBottom: 30}}>
+        <div className={clsSt.footCls} style={{paddingBottom: 30}}>
             <Grid container spacing={0} style={{paddingTop: 31, textAlign: 'center'}}>
                 <Grid item xs={12} md={3}>
                     <p style={{fontSize: 18}}>

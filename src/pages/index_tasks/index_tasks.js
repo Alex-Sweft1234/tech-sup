@@ -11,6 +11,8 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import Pagination from '@material-ui/lab/Pagination';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import DateFnsUtils from '@date-io/date-fns';
 import {
     MuiPickersUtilsProvider,
@@ -23,10 +25,9 @@ const useStyles = makeStyles((theme) => ({
         paddingTop: 15,
         paddingLeft: 15,
         paddingRight: 15,
-        marginLeft: 40,
     },
     containStyle: {
-        paddingTop: 80
+        paddingTop: 80,
     },
     root: {
         '& > *': {
@@ -57,6 +58,23 @@ const useStyles = makeStyles((theme) => ({
     margin: {
         margin: theme.spacing(1),
     },
+    rootPagination: {
+        '& > *': {
+            marginTop: theme.spacing(2),
+        },
+        marginLeft: 50,
+        position: 'relative',
+        bottom: 0
+
+    },
+    rootSpiner: {
+        display: 'flex',
+        '& > * + *': {
+            marginLeft: theme.spacing(2),
+        },
+        paddingLeft: '50%',
+        paddingTop: 50,
+    },
 }))
 
 const typeTask = [
@@ -84,6 +102,7 @@ export default function TaskIndex() {
     const [rows, setRows] =  useState([]);
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [dataTasks, setDataTasks] = useState([]);
+    const [loader, setLoader] = useState(true);
 
     //загрузка данных с сервера
     const listTasks = async () => {
@@ -102,7 +121,7 @@ export default function TaskIndex() {
                 })
             })
             setDataTasks(dataset);
-            //return console.log(dataset);
+            setLoader(false)
         } catch(e) {
             console.log(e)
         }
@@ -143,7 +162,7 @@ export default function TaskIndex() {
     const onDischarge = () => {
         setStatus(0);
         setTerm('');
-        setSelectedDate(new Date());
+        setSelectedDate();
     }
 
     useEffect(() => {
@@ -213,11 +232,21 @@ export default function TaskIndex() {
                         </Grid>
                     </Grid>
                 </Paper>
-                <div style={{marginLeft: 40}}>
+                <div>
                     <TaskList
                         data={rows}
                     />
                 </div>
+                { loader === true ? 
+                    <div className={cls.rootSpiner}>
+                        <CircularProgress />
+                    </div> :
+                    dataTasks.length > 10 ? 
+                        <div className={cls.rootPagination}>
+                            <Pagination count={10} color="primary" />
+                        </div> :
+                        null
+                }
             </Container>
         </Layout>
     )

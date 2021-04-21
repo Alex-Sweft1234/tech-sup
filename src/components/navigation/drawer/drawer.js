@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
         }),
         overflowX: 'hidden',
         //мобильная
-        width: 50,
+        width: 0,
         [theme.breakpoints.up('sm')]: {
             //десктопная
             width: theme.spacing(7),

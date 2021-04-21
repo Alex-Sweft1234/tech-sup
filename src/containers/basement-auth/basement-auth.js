@@ -40,7 +40,7 @@ const Footer = ({ history }) => {
 
     return(
         <div className={clsSt.footCls}>
-            <Grid container spacing={0} style={{paddingTop: 20, paddingBottom: 12, paddingLeft: 80, textAlign: 'center'}}>
+            <Grid container spacing={0} style={{paddingTop: 20, paddingBottom: 12, textAlign: 'center'}}>
                 <Grid item xs={12} md={2}>
                 </Grid>
                 <Grid item xs={12} md={4}>
