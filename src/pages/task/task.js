@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
         '& > * + *': {
             marginLeft: theme.spacing(2),
         },
-        paddingLeft: '48%',
+        paddingLeft: '46%',
         paddingTop: 200
     },
 }))
