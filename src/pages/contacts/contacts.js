@@ -14,13 +14,11 @@ import Button from '@material-ui/core/Button';
 const useStyles = makeStyles((theme) => ({
     paperStyle: {
         padding: 15,
-        //minHeight: '68vh',
     },
     containStyle: {
         paddingTop: 80
     },
     hh: {
-        opacity: .8,
         paddingLeft: 20,
         color: 'DarkSlateGray'
     },

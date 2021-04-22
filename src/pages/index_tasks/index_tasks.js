@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import Axios from '../../axios/axios.js';
-import {Container, Paper, Grid} from "@material-ui/core";
+import { Container, Paper, Grid } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 import Layout from '../../containers/layout/layout.js';
 import TaskList from '../../containers/task-list/task_list.js';
@@ -14,10 +14,7 @@ import Button from '@material-ui/core/Button';
 import Pagination from '@material-ui/lab/Pagination';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import DateFnsUtils from '@date-io/date-fns';
-import {
-    MuiPickersUtilsProvider,
-    KeyboardDatePicker,
-} from '@material-ui/pickers';
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import 'date-fns';
 
 const useStyles = makeStyles((theme) => ({
@@ -45,13 +42,11 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'left'
     },
     hh: {
-        opacity: .8,
         paddingLeft: 20,
         color: 'DarkSlateGray'
     },
     valueTask: {
         fontSize: theme.typography.pxToRem(16),
-        opacity: .9,
         paddingLeft: 10,
         color: 'DarkSlateGray'
     },
@@ -72,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
         '& > * + *': {
             marginLeft: theme.spacing(2),
         },
-        paddingLeft: '50%',
+        paddingLeft: '45%',
         paddingTop: 50,
     },
 }))
@@ -91,6 +86,12 @@ const typeTask = [
         name: 'Завершенные'
     }
 ]
+
+const filt = (status) => {
+    if(status) {
+        return status = 2
+    } else return status = 1
+}
 
 export default function TaskIndex() {
 
@@ -130,14 +131,15 @@ export default function TaskIndex() {
 
     //условия фильтров
     const filterName = dataTasks.filter(e => e.subject.toLowerCase().indexOf(term.toLowerCase()) > -1);
-    const filterStatus = dataTasks.filter(e => e.status.toString()[0] === status.toString()[0]);
+    const filterStatus = dataTasks.filter(e => filt(e.status).toString()[0] === status.toString()[0]);
 
     //фильтры
+
     const rowFiltered = () => {
         if (status === 0){
             return filterName
         }
-        return filterName.filter(e => e.status.toString()[0] === status.toString()[0]);
+        return filterName.filter(e => filt(e.status).toString()[0] === status.toString()[0]);
     }
 
     const rowFilteredName = () => {
@@ -183,7 +185,7 @@ export default function TaskIndex() {
                         </Grid>
                         <Grid item xs={12} md={3}>
                             <Typography className={cls.valueTask}>
-                                Всего задач: {dataTasks.length}, выполненных: {dataTasks.filter(e => e.status === true).length}
+                                Всего задач: {dataTasks.length}, выполненных: {dataTasks.filter(e => e.status).length}
                             </Typography>
                         </Grid>
                     </Grid>
@@ -238,9 +240,9 @@ export default function TaskIndex() {
                         data={rows}
                     />
                 </div>
-                { loader === true ? 
+                { loader ? 
                     <div className={cls.rootSpiner}>
-                        <CircularProgress />
+                        <CircularProgress size={60}/>
                     </div> :
                     dataTasks.length > 10 ? 
                         <div className={cls.rootPagination}>

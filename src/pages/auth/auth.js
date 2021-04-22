@@ -12,14 +12,12 @@ const useStyles = makeStyles((theme) => ({
         paddingTop: 80
     },
     hh: {
-        opacity: .8,
         paddingLeft: 20,
         color: 'DarkSlateGray'
     },
     valueTask: {
         fontSize: theme.typography.pxToRem(17),
         paddingLeft: 30,
-        opacity: .9,
         color: 'DarkSlateGray'
     },
     root: {
