@@ -123,6 +123,7 @@ const NewTask = ({ history }) => {
         const taskItem = {
             id: Object.values(response.data).length + 1,
             status: false,
+            statusDecision: false,
             priority: priority,
             dateStart: selectedDate,
             subject: subject,

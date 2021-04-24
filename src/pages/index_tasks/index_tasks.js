@@ -106,7 +106,7 @@ export default function TaskIndex() {
     const [loader, setLoader] = useState(true);
 
     //загрузка данных с сервера
-    const listTasks = async () => {
+    const downloadListTasks = async () => {
         try {
             const response = await Axios.get('/tasks.json');
             let dataset = [];
@@ -172,7 +172,7 @@ export default function TaskIndex() {
         document.title = `TechSup | Мои задачи`;
         setRows(rowFiltered());
         setRows(rowFilteredName());
-        listTasks();
+        downloadListTasks();
     }, [status, term, dataTasks])
 
     return(

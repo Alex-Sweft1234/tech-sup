@@ -82,11 +82,11 @@ const useStyles = makeStyles((theme) => ({
 
 const Task = ({ history, match}) => {
 
-    
-
     const [dataTask, setDataTask] = useState([]);
     const [statusTask, setStatusTask] = useState(false);
     const [loader, setLoader] = useState(true);
+    const [decisionLog, setDecisionLog] = useState(true);
+    const [decisionTarget, setDecisionTarget] = useState('');
 
     const downloadTask = async () => {
         try {
@@ -94,6 +94,7 @@ const Task = ({ history, match}) => {
             let dataset = response.data;
             setDataTask(dataset)
             setStatusTask(dataset.status)
+            setDecisionLog(dataset.statusDecision)
             setLoader(false)
         } catch(e) {
             console.log(e)
@@ -102,19 +103,45 @@ const Task = ({ history, match}) => {
     
     const cls = useStyles();
 
-    const handleEndTask = async () => {
-        //доделать завершение задачи
+    const EndTask = async () => {
+        setLoader(false);
+        let dateStop = new Date();
+        let status = true;
         
-        setStatusTask(true);
         try {
-            ///////////////////////////
+            const response = await Axios.patch(`/tasks/${match.params.id}/.json`, {dateStop, status})
         } catch (e) {
             console.log(e)
         }
+        setStatusTask(status);
     };
 
-    const handleКediscoverTask = () => {
-        setStatusTask(false);
+    const КediscoverTask = async () => {
+        let dateStop = "";
+        let status = false;
+
+        try {
+            const response = await Axios.patch(`/tasks/${match.params.id}/.json`, {dateStop, status})
+        } catch (e) {
+            console.log(e)
+        }
+        setStatusTask(status);
+    }
+
+    const targetDecision = event => {
+        setDecisionTarget(event.target.value)
+    }
+
+    const saveDecision = async () => {
+        
+        let decision = decisionTarget;
+        let statusDecision = true;
+        try {
+            const response = await Axios.patch(`/tasks/${match.params.id}/.json`, {decision, statusDecision})
+        } catch (e) {
+            console.log(e)
+        }
+        setDecisionLog(true);
     }
 
     useEffect(() => {
@@ -148,25 +175,25 @@ const Task = ({ history, match}) => {
                                         <Link to={ `/tech-sup` } className={cls.lnk}>Закрыть</Link>
                                     </Button>
                                     {
-                                            statusTask ?
-                                                <Button
-                                                    variant="contained"
-                                                    color="primary"
-                                                    size="small"
-                                                    className={cls.button}
-                                                    onClick={handleКediscoverTask}
-                                                >
-                                                    Переоткрыть
-                                                </Button> :
-                                                <Button
-                                                    variant="contained"
-                                                    color="primary"
-                                                    size="small"
-                                                    className={cls.button}
-                                                    onClick={handleEndTask}
-                                                >
-                                                    Завершить
-                                                </Button>
+                                        statusTask ?
+                                            <Button
+                                                variant="contained"
+                                                color="primary"
+                                                size="small"
+                                                className={cls.button}
+                                                onClick={КediscoverTask}
+                                            >
+                                                Переоткрыть
+                                            </Button> :
+                                            <Button
+                                                variant="contained"
+                                                color="primary"
+                                                size="small"
+                                                className={cls.button}
+                                                onClick={EndTask}
+                                            >
+                                                Завершить
+                                            </Button>
                                     }
                                 </Grid>
                             </Grid>
@@ -181,10 +208,10 @@ const Task = ({ history, match}) => {
                                                     <span style={{opacity: .7}}>Приоритет:</span>
                                                     &nbsp;{ 
                                                         dataTask.priority === 0 ? 'Низкий' :
-                                                        dataTask.priority === 1 ? 'Обычный' :
-                                                        dataTask.priority === 2 ? 'Средний' :
-                                                        dataTask.priority === 3 ? 'Высокий' :
-                                                        'Критический'
+                                                            dataTask.priority === 1 ? 'Обычный' :
+                                                                dataTask.priority === 2 ? 'Средний' :
+                                                                    dataTask.priority === 3 ? 'Высокий' :
+                                                                    'Критический'
                                                     }
                                                 </div>
                                                 <div>
@@ -201,11 +228,11 @@ const Task = ({ history, match}) => {
                                                 </div>
                                                 { 
                                                     statusTask ?
-                                                    <div>
-                                                        <span style={{opacity: .7}}>Дата решения:</span>
-                                                        &nbsp;{ dataTask.dateStop }
-                                                    </div> :
-                                                    null
+                                                        <div>
+                                                            <span style={{opacity: .7}}>Дата решения:</span>
+                                                            &nbsp;{ dataTask.dateStop }
+                                                        </div> :
+                                                        null
                                                 }
                                             </Typography>
                                         </Grid>
@@ -225,13 +252,23 @@ const Task = ({ history, match}) => {
                                             <h4 className={cls.hhTask}>Решение</h4>
                                         </Grid>
                                         <Grid item xs={12} md={2} style={{position: 'relative', bottom: 5}}>
-                                            <Button
-                                                variant="contained"
-                                                color="primary"
-                                                size="small"
-                                            >
-                                                Добавить
-                                            </Button>
+                                            { decisionLog ?
+                                                <Button
+                                                    variant="contained"
+                                                    color="primary"
+                                                    size="small"
+                                                >
+                                                    Редактировать
+                                                </Button> :
+                                                <Button
+                                                    variant="contained"
+                                                    color="primary"
+                                                    size="small"
+                                                    onClick={saveDecision}
+                                                >
+                                                    Добавить
+                                                </Button>
+                                            }
                                         </Grid>
                                     </Grid>
                                 <div>
@@ -241,6 +278,8 @@ const Task = ({ history, match}) => {
                                         multiline
                                         rows={7}
                                         variant="outlined"
+                                        value={decisionTarget}
+                                        onChange={targetDecision}
                                     />
                                 </div>
                             </form>
