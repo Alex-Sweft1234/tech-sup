@@ -2,8 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Axios from '../../axios/axios.js';
 import { withRouter, Link } from 'react-router-dom';
 import {Container, Paper, Grid} from "@material-ui/core";
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
 import Layout from '../../containers/layout/layout.js';
 import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
@@ -14,11 +13,7 @@ import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
 import LensSharpIcon from '@material-ui/icons/LensSharp';
 import DateFnsUtils from '@date-io/date-fns';
-import {
-    MuiPickersUtilsProvider,
-    KeyboardTimePicker,
-    KeyboardDatePicker,
-} from '@material-ui/pickers';
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import 'date-fns';
 
 const useStyles = makeStyles((theme) => ({
@@ -41,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     },
     valueTask: {
         fontSize: theme.typography.pxToRem(17),
-        paddingLeft: 30,
+        paddingLeft: 20,
         color: 'DarkSlateGray'
     },
     formControl: {
@@ -125,9 +120,8 @@ const NewTask = ({ history }) => {
         event.preventDefault()
         
         const response = await Axios.get('/tasks.json');
-        
         const taskItem = {
-            id: Object.values(response).length,
+            id: Object.values(response.data).length + 1,
             status: false,
             priority: priority,
             dateStart: selectedDate,
@@ -151,11 +145,11 @@ const NewTask = ({ history }) => {
             <Container maxWidth={"lg"} className={cls.containStyle}>
                 <Paper className={cls.paperStyle}>
                     <Grid container spacing={2} style={{paddingTop: 20}}>
-                        <Grid item xs={12} md={10}>
+                        <Grid item xs={12} md={9}>
                             <h3 className={cls.hh}>Новая задача</h3>
                         </Grid>
-                        <Grid item xs={12} md={2}>
-                            <h5 className={cls.valueTask}>Создание</h5>
+                        <Grid item xs={12} md={3}>
+                            <h5 className={cls.valueTask}>Мои задачи / Создание</h5>
                         </Grid>
                     </Grid>
                     <hr/>
@@ -163,10 +157,8 @@ const NewTask = ({ history }) => {
                         <Grid container spacing={2}>
                             <Grid item xs={12} md={9} style={{paddingTop: 16}}>
                                 <FormControl className={cls.formControl}>
-                                    <InputLabel id="demo-controlled-open-select-label">Приоритет</InputLabel>
+                                    <InputLabel>Приоритет</InputLabel>
                                     <Select
-                                        labelId="demo-controlled-open-select-label"
-                                        id="demo-controlled-open-select"
                                         value={priority}
                                         onChange={handleChangePriority}
                                     >
@@ -188,7 +180,6 @@ const NewTask = ({ history }) => {
                                         disabled
                                         variant="inline"
                                         format="dd/MM/yyyy"
-                                        id="date-picker-inline"
                                         label="Дата создания"
                                         value={selectedDate}
                                         onChange={handleDateChange}
@@ -202,7 +193,6 @@ const NewTask = ({ history }) => {
                         </Grid>
                         <div style={{marginBottom: 20}}>
                             <TextField
-                                id="outlined-basic"
                                 label="Тема задачи"
                                 variant="outlined"
                                 fullWidth
@@ -211,7 +201,6 @@ const NewTask = ({ history }) => {
                         </div>
                         <div>
                             <TextField
-                                id="outlined-multiline-static"
                                 label="Описание задачи"
                                 fullWidth
                                 multiline

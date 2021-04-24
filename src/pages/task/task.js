@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Axios from '../../axios/axios.js';
+import firebase from 'firebase/app';
 import { withRouter, Link } from 'react-router-dom';
 import { Container, Paper, Grid } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
@@ -79,7 +80,10 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
+
 const Task = ({ history, match}) => {
+
+    
 
     const [dataTask, setDataTask] = useState([]);
     const [statusTask, setStatusTask] = useState(false);
@@ -99,10 +103,10 @@ const Task = ({ history, match}) => {
     
     const cls = useStyles();
 
-
     const handleEndTask = async () => {
-        setStatusTask(true);
         //доделать завершение задачи
+        
+        setStatusTask(true);
         try {
             ///////////////////////////
         } catch (e) {
@@ -115,7 +119,7 @@ const Task = ({ history, match}) => {
     }
 
     useEffect(() => {
-        document.title = `TechSup | Задача #1`;
+        document.title = `TechSup | Задача #${dataTask.id}`;
         downloadTask();
     }, [statusTask]);
 

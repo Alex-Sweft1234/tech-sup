@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
     },
     valueTask: {
         fontSize: theme.typography.pxToRem(16),
-        paddingLeft: 10,
+        paddingLeft: 20,
         color: 'DarkSlateGray'
     },
     margin: {
