@@ -17,7 +17,6 @@ export default class App extends Component {
           <CssBaseline />
 
           <Router basename="/">
-
             <Route path="/tech-sup/" component = {IndexTask} exact />
             <Route path="/new-task/" component = {NewTask} />
             <Route path="/contacts/" component = {Contacts} />

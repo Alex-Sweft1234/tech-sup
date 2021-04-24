@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Axios from '../../axios/axios.js';
-import firebase from 'firebase/app';
 import { withRouter, Link } from 'react-router-dom';
 import { Container, Paper, Grid } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';

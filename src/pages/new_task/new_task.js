@@ -86,36 +86,36 @@ const NewTask = ({ history }) => {
     const cls = useStyles();
 
     const [status, setStatus] = useState(0);
+    const [priority, setPriority] = useState(0);
+    const [selectedDate, setSelectedDate] = useState(new Date());
+    const [description, setDescription] = useState('');
+    const [subject, setSubject] = useState('');
 
     //Смена приоретета задачи
-    const [priority, setPriority] = useState(0);
     const handleChangePriority = (event) => {
         setPriority(event.target.value);
     };
 
     //Дата создания задачи
-    const [selectedDate, setSelectedDate] = useState(new Date());
     const handleDateChange = (date) => {
         setSelectedDate(date);
     };
 
     //Описание задачи
-    const [description, setDescription] = useState('');
     const handleChangeDescription = (event) => {
         setDescription(event.target.value);
     };
 
     //Тема задачи
-    const [subject, setSubject] = useState('');
     const handleChangeSubject = (event) => {
         setSubject(event.target.value);
     };
 
-    //Создание новой задачи
+    //Отмена стандартного поведения формы
     const SubmitHandler = (event) => {
         event.preventDefault();
     }
-
+    //Создание новой задачи
     const finishTaskHandler = async event => {
         event.preventDefault()
         
