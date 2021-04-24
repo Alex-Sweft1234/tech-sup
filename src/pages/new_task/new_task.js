@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     },
     valueTask: {
         fontSize: theme.typography.pxToRem(17),
-        paddingLeft: 20,
+        paddingLeft: 40,
         color: 'DarkSlateGray'
     },
     formControl: {
