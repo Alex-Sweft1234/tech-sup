@@ -69,6 +69,7 @@ const useStyles = makeStyles((theme) => ({
         },
         paddingLeft: '45%',
         paddingTop: 50,
+        //position: 'relative'
     },
 }))
 
@@ -158,8 +159,8 @@ export default function TaskIndex() {
         setTerm(event.target.value);
     };
 
-    const handleDateChange = (date) => {
-        setSelectedDate(date);
+    const handleDateChange = (event) => {
+        setSelectedDate(event.target.value);
     };
 
     const onDischarge = () => {
@@ -209,7 +210,7 @@ export default function TaskIndex() {
                                 <KeyboardDatePicker
                                     disableToolbar
                                     variant="inline"
-                                    format="dd/MM/yyyy"
+                                    format="yyyy-MM-dd"
                                     label="По дате"
                                     value={selectedDate}
                                     onChange={handleDateChange}
@@ -242,7 +243,7 @@ export default function TaskIndex() {
                 </div>
                 { loader ? 
                     <div className={cls.rootSpiner}>
-                        <CircularProgress size={60}/>
+                        <CircularProgress size={60} />
                     </div> :
                     dataTasks.length > 10 ? 
                         <div className={cls.rootPagination}>

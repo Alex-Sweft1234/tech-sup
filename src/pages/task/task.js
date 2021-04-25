@@ -32,7 +32,6 @@ const useStyles = makeStyles((theme) => ({
         color: 'DarkSlateGray',
     },
     hhTask: {
-        opacity: .9,
         color: 'DarkSlateGray'
     },
     valueTask: {
@@ -70,12 +69,10 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     rootSpiner: {
-        display: 'flex',
+        display: 'block',
         '& > * + *': {
             marginLeft: theme.spacing(2),
         },
-        paddingLeft: '46%',
-        paddingTop: 200
     },
 }))
 
@@ -105,7 +102,8 @@ const Task = ({ history, match}) => {
 
     const EndTask = async () => {
         setLoader(false);
-        let dateStop = new Date();
+        let dateСurrent = new Date();
+        let dateStop = dateСurrent.toJSON().substring(0,10);
         let status = true;
         
         try {
@@ -114,9 +112,11 @@ const Task = ({ history, match}) => {
             console.log(e)
         }
         setStatusTask(status);
+        setLoader(true);
     };
 
     const КediscoverTask = async () => {
+        setLoader(false);
         let dateStop = "";
         let status = false;
 
@@ -126,6 +126,7 @@ const Task = ({ history, match}) => {
             console.log(e)
         }
         setStatusTask(status);
+        setLoader(true);
     }
 
     const targetDecision = event => {
@@ -137,11 +138,24 @@ const Task = ({ history, match}) => {
         let decision = decisionTarget;
         let statusDecision = true;
         try {
-            const response = await Axios.patch(`/tasks/${match.params.id}/.json`, {decision, statusDecision})
+            const response = await Axios.patch(`/tasks/${match.params.id}/.json`, {decision, statusDecision});
+            const responseServ = await Axios.get(`/tasks/${match.params.id}.json`)
+            let dataset = responseServ.data;
+            setDataTask(dataset)
         } catch (e) {
             console.log(e)
         }
         setDecisionLog(true);
+    }
+
+    const editDecision = async () => {
+        setDecisionLog(false);
+        let statusDecision = false;
+        try {
+            const response = await Axios.patch(`/tasks/${match.params.id}/.json`, {statusDecision})
+        } catch (e) {
+            console.log(e)
+        }
     }
 
     useEffect(() => {
@@ -155,7 +169,7 @@ const Task = ({ history, match}) => {
                 <Paper className={cls.paperStyle}>
                     { loader ? 
                         <div className={cls.rootSpiner}>
-                            <CircularProgress size={60}/>
+                            <CircularProgress size={60} style={{position: 'absolute', top: '35%', left: '47%', marginRight: '-53%'}}/>
                         </div> :
                         <div>
                             <Grid container spacing={2} style={{paddingTop: 20}}>
@@ -247,16 +261,17 @@ const Task = ({ history, match}) => {
                                     <hr/>
                                 </div>
                                 
-                                <Grid container spacing={2}>
-                                        <Grid item xs={12} md={10}>
+                                <Grid container spacing={1}>
+                                        <Grid item xs={12} md={10} style={{paddingLeft: 0}}>
                                             <h4 className={cls.hhTask}>Решение</h4>
                                         </Grid>
-                                        <Grid item xs={12} md={2} style={{position: 'relative', bottom: 5}}>
+                                        <Grid item xs={12} md={2} style={{position: 'relative', bottom: 5, paddingLeft: 0}}>
                                             { decisionLog ?
                                                 <Button
                                                     variant="contained"
                                                     color="primary"
                                                     size="small"
+                                                    onClick={editDecision}
                                                 >
                                                     Редактировать
                                                 </Button> :
@@ -272,15 +287,20 @@ const Task = ({ history, match}) => {
                                         </Grid>
                                     </Grid>
                                 <div>
-                                    <TextField
-                                        label="Описание решения"
-                                        fullWidth
-                                        multiline
-                                        rows={7}
-                                        variant="outlined"
-                                        value={decisionTarget}
-                                        onChange={targetDecision}
-                                    />
+                                    { decisionLog ?
+                                        <Typography style={{marginBottom: 25}}>
+                                            { dataTask.decision }
+                                        </Typography> :
+                                        <TextField
+                                            label="Описание решения"
+                                            fullWidth
+                                            multiline
+                                            rows={7}
+                                            variant="outlined"
+                                            value={decisionTarget}
+                                            onChange={targetDecision}
+                                        />
+                                    }  
                                 </div>
                             </form>
                         </div>

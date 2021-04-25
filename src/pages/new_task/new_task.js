@@ -118,14 +118,16 @@ const NewTask = ({ history }) => {
     //Создание новой задачи
     const finishTaskHandler = async event => {
         event.preventDefault()
-        
+        let dateСurrent = new Date();
+        let date = dateСurrent.toJSON().substring(0,10);
+
         const response = await Axios.get('/tasks.json');
         const taskItem = {
             id: Object.values(response.data).length + 1,
             status: false,
             statusDecision: false,
             priority: priority,
-            dateStart: selectedDate,
+            dateStart: date,
             subject: subject,
             description: description,
         }
@@ -154,8 +156,7 @@ const NewTask = ({ history }) => {
                         </Grid>
                     </Grid>
                     <hr/>
-                    <form className={cls.root} onSubmit={SubmitHandler}>
-                        <Grid container spacing={2}>
+                    <Grid container spacing={1} style={{paddingLeft: 30}}>
                             <Grid item xs={12} md={9} style={{paddingTop: 16}}>
                                 <FormControl className={cls.formControl}>
                                     <InputLabel>Приоритет</InputLabel>
@@ -180,7 +181,7 @@ const NewTask = ({ history }) => {
                                         disableToolbar
                                         disabled
                                         variant="inline"
-                                        format="dd/MM/yyyy"
+                                        format="yyyy-MM-dd"
                                         label="Дата создания"
                                         value={selectedDate}
                                         onChange={handleDateChange}
@@ -192,6 +193,7 @@ const NewTask = ({ history }) => {
                                 </MuiPickersUtilsProvider>
                             </Grid>
                         </Grid>
+                    <form className={cls.root} onSubmit={SubmitHandler}>
                         <div style={{marginBottom: 20}}>
                             <TextField
                                 label="Тема задачи"
