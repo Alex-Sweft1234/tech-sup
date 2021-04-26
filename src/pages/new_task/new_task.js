@@ -118,8 +118,8 @@ const NewTask = ({ history }) => {
     //Создание новой задачи
     const finishTaskHandler = async event => {
         event.preventDefault()
-        let dateСurrent = new Date();
-        let date = dateСurrent.toJSON().substring(0,10);
+        let dateСurrent = new Date().toLocaleDateString();
+        let timeСurrent = new Date().toLocaleTimeString().slice(0,-3);
 
         const response = await Axios.get('/tasks.json');
         const taskItem = {
@@ -127,7 +127,8 @@ const NewTask = ({ history }) => {
             status: false,
             statusDecision: false,
             priority: priority,
-            dateStart: date,
+            dateStart: dateСurrent,
+            timeStart: timeСurrent,
             subject: subject,
             description: description,
         }
@@ -181,7 +182,7 @@ const NewTask = ({ history }) => {
                                         disableToolbar
                                         disabled
                                         variant="inline"
-                                        format="yyyy-MM-dd"
+                                        format="dd.MM.yyyy"
                                         label="Дата создания"
                                         value={selectedDate}
                                         onChange={handleDateChange}

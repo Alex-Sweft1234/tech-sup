@@ -72,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const TaskItem = ({ history, keytask, status, id, taskname, date, descript }) => {
+const TaskItem = ({ history, keytask, status, id, taskname, dateStart, timeStart, descript }) => {
     const cls = useStyles();
     const [expanded, setExpanded] = React.useState(false);
 
@@ -98,7 +98,7 @@ const TaskItem = ({ history, keytask, status, id, taskname, date, descript }) =>
                             </Typography>
                         </Grid>
                         <Grid item xs={12} md={4}>
-                            <Typography className={cls.secondaryHeading}>{date}</Typography>
+                            <Typography className={cls.secondaryHeading}>{dateStart}&nbsp;{timeStart}</Typography>
                         </Grid>
                     </Grid>
                 </AccordionSummary>

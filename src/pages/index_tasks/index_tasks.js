@@ -117,6 +117,7 @@ export default function TaskIndex() {
                     id: value.id,
                     subject: value.subject,
                     dateStart: value.dateStart,
+                    timeStart: value.timeStart,
                     description: value.description,
                     status: value.status,
                     priority: value.priority
@@ -159,8 +160,8 @@ export default function TaskIndex() {
         setTerm(event.target.value);
     };
 
-    const handleDateChange = (event) => {
-        setSelectedDate(event.target.value);
+    const handleDateChange = (date) => {
+        setSelectedDate(date);
     };
 
     const onDischarge = () => {
@@ -210,7 +211,7 @@ export default function TaskIndex() {
                                 <KeyboardDatePicker
                                     disableToolbar
                                     variant="inline"
-                                    format="yyyy-MM-dd"
+                                    format="dd.MM.yyyy"
                                     label="По дате"
                                     value={selectedDate}
                                     onChange={handleDateChange}

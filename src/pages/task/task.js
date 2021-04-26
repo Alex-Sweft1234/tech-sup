@@ -89,9 +89,10 @@ const Task = ({ history, match}) => {
         try {
             const response = await Axios.get(`/tasks/${match.params.id}.json`)
             let dataset = response.data;
-            setDataTask(dataset)
-            setStatusTask(dataset.status)
-            setDecisionLog(dataset.statusDecision)
+            setDataTask(dataset);
+            setStatusTask(dataset.status);
+            setDecisionLog(dataset.statusDecision);
+            setDecisionTarget(dataset.decision);
             setLoader(false)
         } catch(e) {
             console.log(e)
@@ -102,12 +103,12 @@ const Task = ({ history, match}) => {
 
     const EndTask = async () => {
         setLoader(false);
-        let dateСurrent = new Date();
-        let dateStop = dateСurrent.toJSON().substring(0,10);
+        let dateStop = new Date().toLocaleDateString();
+        let timeStop = new Date().toLocaleTimeString().slice(0,-3);
         let status = true;
         
         try {
-            const response = await Axios.patch(`/tasks/${match.params.id}/.json`, {dateStop, status})
+            const response = await Axios.patch(`/tasks/${match.params.id}/.json`, {dateStop, timeStop, status})
         } catch (e) {
             console.log(e)
         }
@@ -238,13 +239,13 @@ const Task = ({ history, match}) => {
                                             <Typography>
                                                 <div>
                                                     <span style={{opacity: .7}}>Дата создания:</span>
-                                                    &nbsp;{ dataTask.dateStart }
+                                                    &nbsp;{ dataTask.dateStart }&nbsp;{ dataTask.timeStart }
                                                 </div>
                                                 { 
                                                     statusTask ?
                                                         <div>
                                                             <span style={{opacity: .7}}>Дата решения:</span>
-                                                            &nbsp;{ dataTask.dateStop }
+                                                            &nbsp;{ dataTask.dateStop }&nbsp;{ dataTask.timeStop }
                                                         </div> :
                                                         null
                                                 }

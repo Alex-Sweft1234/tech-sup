@@ -12,7 +12,8 @@ export default function TaskList (props) {
                                 keytask={e.keytask}
                                 id={e.id}
                                 taskname={e.subject}
-                                date={e.dateStart}
+                                dateStart={e.dateStart}
+                                timeStart={e.timeStart}
                                 descript={e.description}
                                 status={e.status}
                             />
