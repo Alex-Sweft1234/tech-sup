@@ -20,18 +20,18 @@ const useStyles = makeStyles((theme) => ({
     root: {
         '& > *': {
             margin: theme.spacing(1),
-            marginLeft:theme.spacing(3),
+            marginLeft: theme.spacing(3),
         },
     },
     paperStyle: {
         padding: 15,
-        minHeight: '68vh',
+        //minHeight: '68vh',
     },
     containStyle: {
         paddingTop: 80
     },
     hh: {
-        paddingLeft: 20,
+        padding: '20px 0px 10px 25px',
         color: 'DarkSlateGray'
     },
     valueTask: {
@@ -148,14 +148,7 @@ const NewTask = ({ history }) => {
         <Layout>
             <Container maxWidth={"lg"} className={cls.containStyle}>
                 <Paper className={cls.paperStyle}>
-                    <Grid container spacing={2} style={{paddingTop: 20}}>
-                        <Grid item xs={12} md={9}>
-                            <h3 className={cls.hh}>Новая задача</h3>
-                        </Grid>
-                        <Grid item xs={12} md={3}>
-                            <h5 className={cls.valueTask}>Мои задачи / Создание</h5>
-                        </Grid>
-                    </Grid>
+                    <h3 className={cls.hh}>Новая задача (создание)</h3>
                     <hr/>
                     <Grid container spacing={1} style={{paddingLeft: 30}}>
                             <Grid item xs={12} md={9} style={{paddingTop: 16}}>

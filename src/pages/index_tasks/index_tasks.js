@@ -19,9 +19,7 @@ import 'date-fns';
 
 const useStyles = makeStyles((theme) => ({
     paperStyle: {
-        paddingTop: 15,
-        paddingLeft: 15,
-        paddingRight: 15,
+        padding: '15px 15px 0px 15px'
     },
     containStyle: {
         paddingTop: 80,
@@ -55,21 +53,17 @@ const useStyles = makeStyles((theme) => ({
     },
     rootPagination: {
         '& > *': {
-            marginTop: theme.spacing(2),
+            marginTop: theme.spacing(1),
+            marginBottom: theme.spacing(1),  
         },
-        marginLeft: 50,
-        position: 'relative',
-        bottom: 0
 
     },
     rootSpiner: {
-        display: 'flex',
+        textAlign: 'center',
+        paddingTop: 50,
         '& > * + *': {
             marginLeft: theme.spacing(2),
         },
-        paddingLeft: '45%',
-        paddingTop: 50,
-        //position: 'relative'
     },
 }))
 
@@ -246,10 +240,14 @@ export default function TaskIndex() {
                     <div className={cls.rootSpiner}>
                         <CircularProgress size={60} />
                     </div> :
-                    dataTasks.length > 10 ? 
-                        <div className={cls.rootPagination}>
-                            <Pagination count={10} color="primary" />
-                        </div> :
+                    dataTasks.length > 6 ? 
+                        <Grid container alignItems='center' justify='center'>
+                            <Grid item xs='auto'>
+                                <div className={cls.rootPagination} >
+                                    <Pagination count={ Math.trunc(dataTasks.length/6) + 1 } size="small" color="primary" />
+                                </div>
+                            </Grid>
+                        </Grid> :
                         null
                 }
             </Container>

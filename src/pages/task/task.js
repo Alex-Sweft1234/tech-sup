@@ -69,7 +69,8 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     rootSpiner: {
-        display: 'block',
+        textAlign: 'center',
+        paddingTop: 200,
         '& > * + *': {
             marginLeft: theme.spacing(2),
         },
@@ -170,7 +171,7 @@ const Task = ({ history, match}) => {
                 <Paper className={cls.paperStyle}>
                     { loader ? 
                         <div className={cls.rootSpiner}>
-                            <CircularProgress size={60} style={{position: 'absolute', top: '35%', left: '47%', marginRight: '-53%'}}/>
+                            <CircularProgress size={60}/>
                         </div> :
                         <div>
                             <Grid container spacing={2} style={{paddingTop: 20}}>
