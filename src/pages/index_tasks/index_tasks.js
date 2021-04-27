@@ -99,6 +99,7 @@ export default function TaskIndex() {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [dataTasks, setDataTasks] = useState([]);
     const [loader, setLoader] = useState(true);
+    const [palingationValue, setPalingation] = useState(1);
 
     //загрузка данных с сервера
     const downloadListTasks = async () => {
@@ -162,6 +163,10 @@ export default function TaskIndex() {
         setStatus(0);
         setTerm('');
         setSelectedDate();
+    }
+
+    const onChangePalingation = (event, value) => {
+        setPalingation(value)
     }
 
     useEffect(() => {
@@ -234,17 +239,18 @@ export default function TaskIndex() {
                 <div>
                     <TaskList
                         data={rows}
+                        dataPage={palingationValue}
                     />
                 </div>
                 { loader ? 
                     <div className={cls.rootSpiner}>
                         <CircularProgress size={60} />
                     </div> :
-                    dataTasks.length > 6 ? 
+                    dataTasks.length > 10 ? 
                         <Grid container alignItems='center' justify='center'>
                             <Grid item xs='auto'>
                                 <div className={cls.rootPagination} >
-                                    <Pagination count={ Math.trunc(dataTasks.length/6) + 1 } size="small" color="primary" />
+                                    <Pagination count={ Math.trunc(dataTasks.length/10) + 1 } defaultPage={1} page={palingationValue} size="small" color="primary" onChange={onChangePalingation}/>
                                 </div>
                             </Grid>
                         </Grid> :

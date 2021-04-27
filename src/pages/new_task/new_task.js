@@ -25,7 +25,6 @@ const useStyles = makeStyles((theme) => ({
     },
     paperStyle: {
         padding: 15,
-        //minHeight: '68vh',
     },
     containStyle: {
         paddingTop: 80
