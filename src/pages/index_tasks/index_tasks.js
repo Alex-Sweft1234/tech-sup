@@ -131,7 +131,6 @@ export default function TaskIndex() {
     const filterStatus = dataTasks.filter(e => filt(e.status).toString()[0] === status.toString()[0]);
 
     //фильтры
-
     const rowFiltered = () => {
         if (status === 0){
             return filterName

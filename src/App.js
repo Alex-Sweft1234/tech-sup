@@ -9,6 +9,7 @@ import Auth from './pages/auth/auth.js';
 import UserReg from './pages/user-reg/user-reg.js';
 import Task from './pages/task/task.js';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import  ScrollToTop from './ScrollToTop/ScrollToTop.js';
 
 export default class App extends Component {
   render() {
@@ -17,14 +18,17 @@ export default class App extends Component {
           <CssBaseline />
 
           <Router basename="/">
-            <Route path="/tech-sup/" component = {IndexTask} exact />
-            <Route path="/new-task/" component = {NewTask} />
-            <Route path="/contacts/" component = {Contacts} />
-            <Route path="/partners/" component = {Partners} />
-            <Route path="/info/" component = {Info} />
-            <Route path="/auth/" component = {Auth} />
-            <Route path="/user-reg/" component = {UserReg} />
-            <Route path="/task/:id" component = {Task} />
+            <ScrollToTop>
+              <Route path="/tech-sup/" component = {IndexTask} exact />
+              <Route path="/new-task/" component = {NewTask} />
+              <Route path="/contacts/" component = {Contacts} />
+              <Route path="/partners/" component = {Partners} />
+              <Route path="/info/" component = {Info} />
+              <Route path="/auth/" component = {Auth} />
+              <Route path="/user-reg/" component = {UserReg} />
+              <Route path="/task/:id" component = {Task} />
+            </ScrollToTop>
+            
           </Router>
       </div>
       
