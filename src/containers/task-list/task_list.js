@@ -3,8 +3,12 @@ import TaskItem from '../../components/task_item/task_item.js';
 
 export default function TaskList (props) {
 
-    let countPage = props.dataPage * 10;
-    const datafilter = props.data.filter(e => e.id <= countPage && e.id >= countPage - 9 );
+    let datafilter = [];
+
+    if (props.data.length > 10) {
+        let countPage = props.dataPage * 10;
+        datafilter = props.data.filter(e => e.id <= countPage && e.id >= countPage - 9 );
+    } else datafilter = props.data
 
     return(
         <div>

@@ -135,14 +135,22 @@ export default function TaskIndex() {
         if (status === 0){
             return filterName
         }
-        return filterName.filter(e => filt(e.status).toString()[0] === status.toString()[0]);
+        let dataset = filterName.filter(e => filt(e.status).toString()[0] === status.toString()[0]);
+        if(dataTasks.length <= 10) {
+            setPalingation(1);
+        }
+        return dataset;
     }
 
     const rowFilteredName = () => {
         if (term.lenght === 0){
             return filterStatus
         }
-        return rowFiltered().filter(e => e.subject.toLowerCase().indexOf(term.toLowerCase()) > -1);
+        let dataset = rowFiltered().filter(e => e.subject.toLowerCase().indexOf(term.toLowerCase()) > -1);
+        if(dataTasks.length <= 10) {
+            setPalingation(1);
+        }
+        return dataset;
     }
 
     //получение данных из объектов формы
@@ -165,7 +173,7 @@ export default function TaskIndex() {
     }
 
     const onChangePalingation = (event, value) => {
-        setPalingation(value)
+        setPalingation(value);
     }
 
     useEffect(() => {
@@ -249,7 +257,7 @@ export default function TaskIndex() {
                         <Grid container alignItems='center' justify='center'>
                             <Grid item xs='auto'>
                                 <div className={cls.rootPagination} >
-                                    <Pagination count={ Math.trunc(dataTasks.length/10) + 1 } defaultPage={1} page={palingationValue} size="small" color="primary" onChange={onChangePalingation}/>
+                                    <Pagination count={ Math.trunc(dataTasks.length/10) + 1 } defaultPage={1} page={ palingationValue } size="small" color="primary" onChange={onChangePalingation}/>
                                 </div>
                             </Grid>
                         </Grid> :
